@@ -94,7 +94,7 @@ export function GeometricBackground() {
 
           ctx.beginPath();
           ctx.arc(x, y, radius, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(0, 0, 0, 0.10)";
+          ctx.fillStyle = "rgba(0, 0, 0, 0.13)";
           ctx.fill();
         }
       }

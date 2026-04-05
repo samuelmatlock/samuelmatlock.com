@@ -10,47 +10,47 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { Book } from "../lib/books";
+import { Movie } from "../lib/movies";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useRouter } from "next/router";
 
-interface BookshelfProps {
-  books: Book[];
+interface MovieshelfProps {
+  movies: Movie[];
 }
 
-export function Bookshelf({ books }: BookshelfProps) {
+export function Movieshelf({ movies }: MovieshelfProps) {
   const router = useRouter();
-  const [bookIndex, setBookIndex] = React.useState(-1);
+  const [movieIndex, setMovieIndex] = React.useState(-1);
   const [scroll, setScroll] = React.useState(-200);
 
-  const bookshelfRef = React.useRef<HTMLDivElement>(null);
+  const movieshelfRef = React.useRef<HTMLDivElement>(null);
   const viewportRef = React.useRef<HTMLDivElement>(null);
   const scrollRightRef = React.useRef<HTMLDivElement>(null);
   const scrollLeftRef = React.useRef<HTMLDivElement>(null);
   const viewportDimensions = useDimensions(viewportRef, true);
   const [isScrolling, setIsScrolling] = React.useState(false);
-  const [booksInViewport, setBooksInViewport] = React.useState(0);
+  const [moviesInViewport, setMoviesInViewport] = React.useState(0);
   const scrollEvents = useBreakpointValue({
     base: { start: "touchstart", stop: "touchend" },
     sm: { start: "mouseenter", stop: "mouseleave" },
   });
 
-  const width = 41.5;
+  const width = 25;
   const height = 270;
 
   const spineWidth = `${width}px`;
-  const coverWidth = `${width * 4}px`;
-  const bookWidth = `${width * 5}px`;
-  const bookHeight = `${height}px`;
+  const coverWidth = `${width * 7}px`;
+  const movieWidth = `${width * 7}px`;
+  const movieHeight = `${height}px`;
 
   const minScroll = 0;
   const maxScroll = React.useMemo(() => {
     return (
-      (width + 12) * (books.length - booksInViewport) +
-      (bookIndex > -1 ? width * 4 : 0) +
+      (width + 12) * (movies.length - moviesInViewport) +
+      (movieIndex > -1 ? width * 4 : 0) +
       5
     );
-  }, [bookIndex, books.length, booksInViewport]);
+  }, [movieIndex, movies.length, moviesInViewport]);
 
   const boundedScroll = (scrollX: number) => {
     setScroll(Math.max(minScroll, Math.min(maxScroll, scrollX)));
@@ -66,30 +66,30 @@ export function Bookshelf({ books }: BookshelfProps) {
   );
 
   React.useEffect(() => {
-    if (router.query.slug && router.query.slug.length > 0 && bookIndex === -1) {
-      const idx = books.findIndex((b) =>
+    if (router.query.slug && router.query.slug.length > 0 && movieIndex === -1) {
+      const idx = movies.findIndex((b) =>
         b.slug
           .toLowerCase()
           .includes((router.query.slug as string[])[0].toLowerCase())
       );
-      setBookIndex(idx);
+      setMovieIndex(idx);
     }
   }, []);
 
   React.useEffect(() => {
-    if (bookIndex === -1) {
+    if (movieIndex === -1) {
       boundedRelativeScroll(0);
     } else {
-      boundedScroll((bookIndex - (booksInViewport - 4.5) / 2) * (width + 11));
+      boundedScroll((movieIndex - (moviesInViewport - 4.5) / 2) * (width + 11));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bookIndex, boundedRelativeScroll]);
+  }, [movieIndex, boundedRelativeScroll]);
 
   React.useEffect(() => {
     if (viewportDimensions) {
       boundedRelativeScroll(0);
-      const numberOfBooks = viewportDimensions.contentBox.width / (width + 11);
-      setBooksInViewport(numberOfBooks);
+      const numberOfMovies = viewportDimensions.contentBox.width / (width + 11);
+      setMoviesInViewport(numberOfMovies);
     }
   }, [viewportDimensions, boundedRelativeScroll]);
 
@@ -182,7 +182,7 @@ export function Bookshelf({ books }: BookshelfProps) {
           <filter id="paper" x="0%" y="0%" width="100%" height="100%">
             <feTurbulence
               type="fractalNoise"
-              baseFrequency="0.9"
+              baseFrequency="0"
               numOctaves="8"
               result="noise"
             />
@@ -198,7 +198,7 @@ export function Bookshelf({ books }: BookshelfProps) {
         </defs>
       </svg>
 
-      <Box position="relative" ref={bookshelfRef}>
+      <Box position="relative" ref={movieshelfRef}>
         <Box
           position="absolute"
           left={{ base: "-28px", md: "-36px" }}
@@ -223,17 +223,17 @@ export function Bookshelf({ books }: BookshelfProps) {
           cursor="grab"
           ref={viewportRef}
         >
-          {books.map((book, index) => {
+          {movies.map((movie, index) => {
             return (
               <button
-                key={book.title}
+                key={movie.title}
                 onClick={() => {
-                  if (index === bookIndex) {
-                    setBookIndex(-1);
-                    router.push(`/books`);
+                  if (index === movieIndex) {
+                    setMovieIndex(-1);
+                    router.push(`/movies`);
                   } else {
-                    setBookIndex(index);
-                    router.push(book.slug);
+                    setMovieIndex(index);
+                    router.push(movie.slug);
                   }
                 }}
                 style={{
@@ -244,7 +244,7 @@ export function Bookshelf({ books }: BookshelfProps) {
                   outline: "none",
                   flexShrink: 0,
                   transform: `translateX(-${scroll}px)`,
-                  width: bookIndex === index ? bookWidth : spineWidth,
+                  width: movieIndex === index ? movieWidth : spineWidth,
                   perspective: "1000px",
                   WebkitPerspective: "1000px",
                   gap: "0px",
@@ -258,13 +258,13 @@ export function Bookshelf({ books }: BookshelfProps) {
                   alignItems="flex-start"
                   justifyContent="center"
                   width={spineWidth}
-                  height={bookHeight}
+                  height={movieHeight}
                   flexShrink={0}
                   transformOrigin="right"
-                  backgroundColor={book.spineColor}
-                  color={book.textColor}
+                  backgroundColor={movie.spineColor}
+                  color={movie.textColor}
                   transform={`translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(${
-                    bookIndex === index ? "-60deg" : "0deg"
+                    movieIndex === index ? "-60deg" : "0deg"
                   }) rotateZ(0deg) skew(0deg, 0deg)`}
                   transition={"all 500ms ease"}
                   willChange="auto"
@@ -280,7 +280,7 @@ export function Bookshelf({ books }: BookshelfProps) {
                       top: 0,
                       left: 0,
                       zIndex: 50,
-                      height: bookHeight,
+                      height: movieHeight,
                       width: spineWidth,
                       opacity: 0.4,
                       filter: "url(#paper)",
@@ -298,7 +298,7 @@ export function Bookshelf({ books }: BookshelfProps) {
                     overflow="hidden"
                     maxHeight={`${height - 24}px`}
                   >
-                    {book.title}
+                    {movie.title}
                   </Heading>
                 </Flex>
                 <Box
@@ -307,7 +307,7 @@ export function Bookshelf({ books }: BookshelfProps) {
                   overflow="hidden"
                   transformOrigin="left"
                   transform={`translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(${
-                    bookIndex === index ? "30deg" : "88.8deg"
+                    movieIndex === index ? "30deg" : "88.8deg"
                   }) rotateZ(0deg) skew(0deg, 0deg)`}
                   transition={"all 500ms ease"}
                   willChange="auto"
@@ -323,7 +323,7 @@ export function Bookshelf({ books }: BookshelfProps) {
                       top: 0,
                       right: 0,
                       zIndex: 50,
-                      height: bookHeight,
+                      height: movieHeight,
                       width: coverWidth,
                       opacity: 0.4,
                       filter: "url(#paper)",
@@ -336,16 +336,16 @@ export function Bookshelf({ books }: BookshelfProps) {
                       top: 0,
                       left: 0,
                       zIndex: 50,
-                      height: bookHeight,
+                      height: movieHeight,
                       width: coverWidth,
                       background: `linear-gradient(to right, rgba(255, 255, 255, 0) 2px, rgba(255, 255, 255, 0.5) 3px, rgba(255, 255, 255, 0.25) 4px, rgba(255, 255, 255, 0.25) 6px, transparent 7px, transparent 9px, rgba(255, 255, 255, 0.25) 9px, transparent 12px)`,
                     }}
                   />
                   <Image
-                    src={book.coverImage}
-                    alt={book.title}
+                    src={movie.coverImage}
+                    alt={movie.title}
                     width={coverWidth}
-                    height={bookHeight}
+                    height={movieHeight}
                     style={{
                       transition: "all 500ms ease",
                       willChange: "auto",

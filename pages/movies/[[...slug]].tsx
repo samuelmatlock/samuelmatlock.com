@@ -12,37 +12,37 @@ import { GetStaticPropsContext, NextPageWithLayout } from "next";
 import Layout from "../../components/Layout";
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import { MDXRemote } from "next-mdx-remote";
-import { Book, getAllBooks, getAllSlugs, getBook } from "../../lib/books";
-import { Bookshelf } from "../../components/Bookshelf";
+import { Movie, getAllMovies, getAllSlugs, getMovie } from "../../lib/movies";
+import { Movieshelf } from "../../components/Movieshelf";
 import { Content } from "../../lib/mdx";
 import { NextSeo } from "next-seo";
 
-interface BooksProps {
-  books: Book[];
-  book?: Content<Book>;
+interface MoviesProps {
+  movies: Movie[];
+  movie?: Content<Movie>;
 }
 
-const Books: NextPageWithLayout<BooksProps> = ({ books, book }) => {
-  if (book) {
+const Movies: NextPageWithLayout<MoviesProps> = ({ movies, movie }) => {
+  if (movie) {
     return (
       <>
         <NextSeo
-          title={book.metadata.title}
-          description={`${book.metadata.author} · ${book.metadata.date} · ${book.metadata.rating}/10`}
+          title={movie.metadata.title}
+          description={`${movie.metadata.director} · ${movie.metadata.rating}/10`}
           openGraph={{
-            title: book.metadata.title,
-            description: `${book.metadata.author} · ${book.metadata.date} · ${book.metadata.rating}/10`,
+            title: movie.metadata.title,
+            description: `${movie.metadata.director} · ${movie.metadata.rating}/10`,
           }}
         />
         <Stack spacing={4}>
           <VStack align="flex-start" spacing={1}>
-            <Heading size="lg">{book.metadata.title}</Heading>
+            <Heading size="lg">{movie.metadata.title}</Heading>
             <Text fontSize="sm" color="gray.500">
-              {book.metadata.author} · {book.metadata.date} · {book.metadata.rating}/10
+              {movie.metadata.director} · {movie.metadata.rating}/10
             </Text>
           </VStack>
           <Prose>
-            <MDXRemote compiledSource={book.source} scope={{}} frontmatter={{}} />
+            <MDXRemote compiledSource={movie.source} scope={{}} frontmatter={{}} />
           </Prose>
         </Stack>
       </>
@@ -51,33 +51,33 @@ const Books: NextPageWithLayout<BooksProps> = ({ books, book }) => {
 
   return (
     <>
-      <NextSeo title="Books | Samuel Matlock" />
+      <NextSeo title="Movies | Samuel Matlock" />
       <Stack spacing={0}>
-        {books
+        {movies
           .slice()
           .sort((a, b) => b.rating - a.rating)
-          .map((book, index) => (
-            <Stack key={book.title}>
+          .map((movie, index) => (
+            <Stack key={movie.title}>
               {index > 0 && <Divider borderColor="gray.100" />}
               <Flex py={5} gap={5} align="flex-start">
                 <Image
-                  src={book.coverImage}
-                  alt={book.title}
+                  src={movie.coverImage}
+                  alt={movie.title}
                   height={{ base: "90px", md: "110px" }}
                   flexShrink={0}
                 />
                 <VStack align="flex-start" spacing={1}>
-                  <Link href={book.slug}>
+                  <Link href={movie.slug}>
                     <Text fontWeight="medium" _hover={{ color: "gray.500" }}>
-                      {book.title}
+                      {movie.title}
                     </Text>
                   </Link>
                   <Text fontSize="sm" color="gray.400">
-                    {book.author} · {book.date} · {book.rating}/10
+                    {movie.director} · {movie.rating}/10
                   </Text>
-                  {book.content && (
+                  {movie.content && (
                     <Text fontSize="sm" color="gray.600" lineHeight="1.65" pt={1}>
-                      {book.content}
+                      {movie.content}
                     </Text>
                   )}
                 </VStack>
@@ -89,12 +89,12 @@ const Books: NextPageWithLayout<BooksProps> = ({ books, book }) => {
   );
 };
 
-export default Books;
+export default Movies;
 
-Books.getLayout = (page: JSX.Element) => (
+Movies.getLayout = (page: JSX.Element) => (
   <Layout>
     <Flex direction="column" gap={8}>
-      <Bookshelf books={page.props.books} />
+      <Movieshelf movies={page.props.movies} />
       <Divider borderColor="gray.100" />
       {page}
     </Flex>
@@ -111,19 +111,19 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
   if (params && params.slug && params.slug.length > 1) {
-    return { redirect: { destination: "/books" } };
+    return { redirect: { destination: "/movies" } };
   }
 
-  const books = getAllBooks();
+  const movies = getAllMovies();
 
   if (!params || !params.slug || params.slug.length === 0) {
-    return { props: { books } };
+    return { props: { movies } };
   }
 
-  const book = await getBook(params.slug[0] as string);
-  if (!book) {
-    return { redirect: { destination: "/books" } };
+  const movie = await getMovie(params.slug[0] as string);
+  if (!movie) {
+    return { redirect: { destination: "/movies" } };
   }
 
-  return { props: { books, book } };
+  return { props: { movies, movie } };
 }

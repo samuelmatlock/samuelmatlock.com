@@ -1,5 +1,5 @@
-# metadata
-**/index.json
+# metadata (generated at build time)
+content/writing/index.json
 
 # dependencies
 /node_modules

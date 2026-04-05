@@ -1,0 +1,472 @@
+[
+  {
+    "title": "A Quiet Place",
+    "director": "John Krasinski",
+    "rating": 7,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMjI0MDMzNTQ0M15BMl5BanBnXkFtZTgwMTM5NzM3NDM@._V1_.jpg",
+    "spineColor": "#34514a",
+    "textColor": "#FFFFFFa",
+    "slug": "/movies/a-quiet-place",
+    "content": "A family is forced to live in near-total silence to survive creatures that hunt by sound in this post-apocalyptic horror. Krasinski uses silence as the primary storytelling instrument, making every creaking floorboard and snapped twig genuinely terrifying."
+  },
+  {
+    "title": "Apocalypse Now",
+    "director": "Francis Ford Coppola",
+    "rating": 10,
+    "coverImage": "https://internationalfilmseries.com/resources.internationalfilmseries.com/photo_full/8343/400_ApocalypseNow_Poster.jpg",
+    "spineColor": "#71010f",
+    "textColor": "#FFFFFF",
+    "slug": "/movies/apocalypse-now",
+    "content": "Captain Willard travels deep into Cambodia to terminate a rogue colonel who has set himself up as a god among local tribes during the Vietnam War. Coppola's hallucinatory epic is one of cinema's most ambitious explorations of war, madness, and the darkness inside civilization."
+  },
+  {
+    "title": "Blade Runner",
+    "director": "Ridley Scott",
+    "rating": 9,
+    "coverImage": "https://miro.medium.com/v2/resize:fit:1400/1*4KkBJLj0-_nGCblVAzlA2A.jpeg",
+    "spineColor": "#000201",
+    "textColor": "#FFFFFF",
+    "slug": "/movies/blade-runner",
+    "content": "A detective in a dystopian 2019 Los Angeles hunts synthetic humans called replicants who have gone rogue. Ridley Scott's neo-noir masterpiece raised the bar for science-fiction world-building and asked profound questions about what it means to be human."
+  },
+  {
+    "title": "China Town",
+    "director": "Roman Polanski",
+    "rating": 10,
+    "coverImage": "https://s3.amazonaws.com/nightjarprod/content/uploads/sites/192/2024/05/09094253/mQJz8J4naOA7RmCtypTPjgXZIMY.jpg",
+    "spineColor": "#fdbb29",
+    "textColor": "#f60e4f",
+    "slug": "/movies/china-town",
+    "content": "A private detective unravels a web of corruption, deceit, and incest in 1930s Los Angeles. Polanski's neo-noir is one of the greatest screenplays ever written, and Nicholson and Faye Dunaway deliver performances that define their careers."
+  },
+  {
+    "title": "Fear and Loathing in Las Vegas",
+    "director": "Terry Gilliam",
+    "rating": 8,
+    "coverImage": "https://m.media-amazon.com/images/I/91RZMbnPpyL._AC_UF1000,1000_QL80_.jpg",
+    "spineColor": "#66aaf6",
+    "textColor": "#222",
+    "slug": "/movies/fear-and-loathing-in-las-vegas",
+    "content": "Hot take: my favorite Johnny Depp performance. If The Spiderman movies didn't exist it'd also be my favorite of Tobey Maguire's. Hilarious drug-fueled comedy with some darker themes centered around classic American Journalism. Hunter S. Thompson did an amazing job with the original book and it translates easily to a really fun watch."
+  },
+  {
+    "title": "Ford v Ferrari",
+    "director": "James Mangold",
+    "rating": 7,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BM2UwMDVmMDItM2I2Yi00NGZmLTk4ZTUtY2JjNTQ3OGQ5ZjM2XkEyXkFqcGdeQXVyMTA1OTYzOTUx._V1_.jpg",
+    "spineColor": "#dce6e4",
+    "textColor": "#d03627",
+    "slug": "/movies/ford-v-ferrari",
+    "content": "The true story of Carroll Shelby and driver Ken Miles as they build a revolutionary race car to beat Ferrari at the 1966 Le Mans for Ford. A thrilling, emotionally satisfying film about craftsmanship, friendship, and the cost of institutional compromise."
+  },
+  {
+    "title": "Forrest Gump",
+    "director": "Robert Zemeckis",
+    "rating": 8,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg",
+    "spineColor": "#fcfdff",
+    "textColor": "#161763",
+    "slug": "/movies/forrest-gump",
+    "content": "A kind-hearted man from Alabama with a below-average IQ finds himself at the center of nearly every major American cultural event from the 1950s through the 1980s. The film works entirely because of Tom Hanks' utterly committed performance."
+  },
+  {
+    "title": "Get Out",
+    "director": "Jordan Peele",
+    "rating": 8,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMjUxMDQwNjcyNl5BMl5BanBnXkFtZTgwNzcwMzc0MTI@._V1_.jpg",
+    "spineColor": "#1c2124",
+    "textColor": "#f9f9f9",
+    "slug": "/movies/get-out",
+    "content": "A young Black man visits his white girlfriend's wealthy family estate and slowly uncovers something deeply sinister beneath their liberal veneer. Peele's debut is a precise, terrifying social thriller that works on multiple levels simultaneously."
+  },
+  {
+    "title": "Gladiator",
+    "director": "Ridley Scott",
+    "rating": 7,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
+    "spineColor": "#060203",
+    "textColor": "#b9a864",
+    "slug": "/movies/gladiator",
+    "content": "A Roman general is betrayed, enslaved, and forced into the gladiatorial arena, where he plots revenge against the corrupt emperor who murdered his family. Ridley Scott's epic is old-fashioned Hollywood spectacle made with genuine emotional intelligence."
+  },
+  {
+    "title": "Glory Road",
+    "director": "James Gartner",
+    "rating": 9,
+    "coverImage": "https://upload.wikimedia.org/wikipedia/en/e/eb/Glory_road.jpg",
+    "spineColor": "#1a0709",
+    "textColor": "#eeeeee",
+    "slug": "/movies/glory-road",
+    "content": "The true story of Don Haskins and the 1966 Texas Western basketball team, the first to start five Black players in an NCAA championship game. A rousing sports drama that places a landmark moment in civil rights history at its center."
+  },
+  {
+    "title": "The God Father",
+    "director": "Francis Ford Coppola",
+    "rating": 10,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+    "spineColor": "#010101",
+    "textColor": "#e0d092",
+    "slug": "/movies/god-father",
+    "content": "The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant youngest son. Arguably the greatest American film ever made — Coppola's portrait of power, family, and moral corruption remains unmatched in its craft."
+  },
+  {
+    "title": "Good Will Hunting",
+    "director": "Gus Van Sant",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BOTI0MzcxMTYtZDVkMy00NjY1LTgyMTYtZmUxN2M3NmQ2NWJhXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
+    "spineColor": "#030303",
+    "textColor": "#d0d0cb",
+    "slug": "/movies/good-will-hunting",
+    "content": "A janitor at MIT with a genius-level intellect resists the world's attempts to cultivate his gifts, until a therapist finally breaks through his defenses. The Damon-Affleck script is a remarkable debut, elevated by Robin Williams' most moving performance."
+  },
+  {
+    "title": "Goodfellas",
+    "director": "Gus Van Sant",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+    "spineColor": "#010101",
+    "textColor": "#fdfdfa",
+    "slug": "/movies/goodfellas",
+    "content": "The rise and fall of Henry Hill and his life in the mob from boyhood to witness protection. Scorsese's kinetic, propulsive masterwork is the definitive portrait of organized crime — visceral, funny, and ultimately devastating."
+  },
+  {
+    "title": "Groundhog Day",
+    "director": "Harold Ramis",
+    "rating": 7,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BZWIxNzM5YzQtY2FmMS00Yjc3LWI1ZjUtNGVjMjMzZTIxZTIxXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_FMjpg_UX1000_.jpg",
+    "spineColor": "#977d4d",
+    "textColor": "#cd0d07",
+    "slug": "/movies/groundhog-day",
+    "content": "A self-centered weatherman finds himself reliving the same February day over and over in a small Pennsylvania town. Ramis turned a comedic premise into something genuinely philosophical, and Bill Murray has never been better."
+  },
+  {
+    "title": "Heat",
+    "director": "Michael Mann",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BYjZjNTJlZGUtZTE1Ny00ZDc4LTgwYjUtMzk0NDgwYzZjYTk1XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
+    "spineColor": "#58a7d1",
+    "textColor": "#19120c",
+    "slug": "/movies/heat",
+    "content": "A seasoned LAPD detective and a master thief play a slow-burning cat-and-mouse game across Los Angeles that builds to one of cinema's most iconic confrontations. Mann's operatic crime epic set the template for the modern heist film."
+  },
+  {
+    "title": "Inception",
+    "director": "Christopher Nolan",
+    "rating": 8,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
+    "spineColor": "#011420",
+    "textColor": "#ed1d26",
+    "slug": "/movies/inception",
+    "content": "A skilled thief who specializes in entering people's dreams is offered a chance to have his criminal record erased if he can plant an idea in a target's subconscious. Nolan's mind-bending blockbuster is a rare feat — an original, intellectually ambitious film executed on a blockbuster scale."
+  },
+  {
+    "title": "Indiana Jones and the Last Crusade",
+    "director": "Steven Spielberg",
+    "rating": 7,
+    "coverImage": "https://assets.scriptslug.com/live/img/posters/indiana-jones-and-the-last-crusade-1989.jpg?utime=20240519142127",
+    "spineColor": "#6a170c",
+    "textColor": "#f2ca5b",
+    "slug": "/movies/indiana-jones-and-the-last-crusade",
+    "content": "Indiana Jones teams up with his estranged father to find the Holy Grail before the Nazis can get to it first. The warmest and most emotionally resonant entry in the series, elevated enormously by the chemistry between Ford and Sean Connery."
+  },
+  {
+    "title": "Inglorious Basterds",
+    "director": "Quentin Tarantino",
+    "rating": 7,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BOTJiNDEzOWYtMTVjOC00ZjlmLWE0NGMtZmE1OWVmZDQ2OWJhXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_FMjpg_UX1000_.jpg",
+    "spineColor": "#ffffff",
+    "textColor": "#0c1013",
+    "slug": "/movies/inglorious-basterds",
+    "content": "In Nazi-occupied France, a group of Jewish-American soldiers plot to assassinate the Nazi leadership in a daring ambush inside a Parisian cinema. Tarantino's most disciplined work is a wildly entertaining, morally complex revenge fantasy that operates on pure cinema."
+  },
+  {
+    "title": "Jaws",
+    "director": "Steven Spielberg",
+    "rating": 7,
+    "coverImage": "https://m.media-amazon.com/images/I/616z7DnWGmL.jpg",
+    "spineColor": "#fdf5e8",
+    "textColor": "#e00b2f",
+    "slug": "/movies/jaws",
+    "content": "A great white shark terrorizes a small beach town, and the local police chief, a marine biologist, and a grizzled shark hunter set out to stop it. Spielberg's breakthrough defined the summer blockbuster and remains a near-perfect thriller."
+  },
+  {
+    "title": "Master and Commander",
+    "director": "Peter Weir",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BZDEzYmZmOTYtMzdlYS00MWNjLWE2YjEtMzkyZTMyOWZjMjkyXkEyXkFqcGc@._V1_.jpg",
+    "spineColor": "#25435d",
+    "textColor": "#fcfefe",
+    "slug": "/movies/master-and-commander",
+    "content": "Captain Jack Aubrey leads his crew across the ocean in pursuit of a faster, better-armed French warship during the Napoleonic Wars. An underappreciated masterpiece — Peter Weir captures life at sea with extraordinary authenticity and restraint."
+  },
+  {
+    "title": "No Country for Old Men",
+    "director": "Coen Brothers",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMjA5Njk3MjM4OV5BMl5BanBnXkFtZTcwMTc5MTE1MQ@@._V1_FMjpg_UX1000_.jpg",
+    "spineColor": "#000000",
+    "textColor": "#FFF",
+    "slug": "/movies/no-country-for-old-men",
+    "content": "One of Cormac McCarthy's great narratives translated by two of my favorite directors: The Coen Brothers. Javier Bardem does an incredible job with Anton Chigurh as a terrifying, tireless force of evil. Not to mention amazing performances from Tommy Lee Jones, Woddy Harrelson, and Josh Brolin."
+  },
+  {
+    "title": "Ocean's Eleven",
+    "director": "Steven Soderbergh",
+    "rating": 10,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BYzVmYzVkMmUtOGRhMi00MTNmLThlMmUtZTljYjlkMjNkMjJkXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_.jpg",
+    "spineColor": "#000000",
+    "textColor": "#FFF",
+    "slug": "/movies/oceans-11",
+    "content": "Amazing dialogue. Cult classic. Soderbergh did an amazing job of writing characters and dropping viewers in the middle of a world that feels like it has always been around. The heist slang, the subtelties between characters - all add up to an amazingly hilarious and entertaining movie."
+  },
+  {
+    "title": "On the Rocks",
+    "director": "Sofia Cappola",
+    "rating": 8,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BNDNmN2JkNzItZGYwNy00MjAzLTg3OTUtZDliOTU0ZWQzOTA5XkEyXkFqcGdeQXVyMTkxODQ4MDg@._V1_.jpg",
+    "spineColor": "#48221f",
+    "textColor": "#fffefc",
+    "slug": "/movies/on-the-rocks",
+    "content": "Rashida Jones does great. So does Bill Burr. The two seemlessly fit into believably portraying a complicated life-long father daughter relationship. This movie rewards paying attention so I'm sure it'll make for a great rewatch. Great set design used in telling the story makes for quite a bit of eye candy too."
+  },
+  {
+    "title": "Papillon",
+    "director": "Franklin J. Schaffner",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BZGRjZjQ0NzAtYmZlNS00Zjc1LTk1YWItMDY5YzQxMzA4MTAzXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_.jpg",
+    "spineColor": "#FFFFFF",
+    "textColor": "#222",
+    "slug": "/movies/papillon",
+    "content": "A Steve McQueen classic. He plays a french prisoner convicted falsely of a murder who is sent to a penal colony in French Guiana. It is a riveting story of justice, violence, opression, and escape. Great twists and turns supported by a cinematography ahead of its time."
+  },
+  {
+    "title": "Parasite",
+    "director": "Bong Joon Ho",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg",
+    "spineColor": "#fafeff",
+    "textColor": "#226b38",
+    "slug": "/movies/parasite",
+    "content": "A destitute Korean family schemes their way into employment with a wealthy family, until hidden truths begin to surface. Bong Joon-ho's Palme d'Or winner is a genre-defying masterwork that works simultaneously as a dark comedy, thriller, and scathing critique of class."
+  },
+  {
+    "title": "Princess Mononoke",
+    "director": "Hayao Miyazaki",
+    "rating": 10,
+    "coverImage": "https://encodeur.movidone.com/getimage/iHmRGF0VI_2rTIwVyKdKoj9fwjyNhacrXEzwSYY_dyokJN-MEd_y5N1vvirm2EfK7gEn-SOpVezoCjyMQzRN-QLMafhJpcp06pIyT1XTrQQBuYmkqBkW_EYPVotAOiXphejn_aY_d48onJykd9LnZSHvqAEc6T-8RI-rh8d3i_Jyo2IrQPiQTwdjJxEo0hQ-gUTJNha_OK_Lv4JMZf5CW93N0SiUd1X-m89lTBgvcHovjSGExKfWmJ2hi1PAToVBANo%3D?type=web",
+    "spineColor": "#0a1415",
+    "textColor": "#e71d26",
+    "slug": "/movies/princess-mononoke",
+    "content": "A young warrior becomes entangled in an escalating battle between the gods of an ancient forest and the industrialists consuming it. Miyazaki's sweeping epic refuses easy moral answers and remains one of the most ambitious animated films ever made."
+  },
+  {
+    "title": "Pulp Fiction",
+    "director": "Quentin Tarantino",
+    "rating": 10,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+    "spineColor": "#bb1d02",
+    "textColor": "#efca24",
+    "slug": "/movies/pulp-fiction",
+    "content": "Interlocking stories of hitmen, a gangster's wife, and a washed-up boxer collide in Los Angeles over the course of a few surreal days. Tarantino's second feature redefined independent cinema in the 1990s and has lost none of its electric, audacious energy."
+  },
+  {
+    "title": "Reservoir Dogs",
+    "director": "Quentin Tarantino",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BZmExNmEwYWItYmQzOS00YjA5LTk2MjktZjEyZDE1Y2QxNjA1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg",
+    "spineColor": "#c58b5b",
+    "textColor": "#db1c17",
+    "slug": "/movies/reservoir-dogs",
+    "content": "The aftermath of a botched diamond heist unravels as the surviving criminals turn on each other in an empty warehouse. Tarantino's debut is stripped-down and relentlessly tense — a film that introduced a voice that would reshape American cinema."
+  },
+  {
+    "title": "Scott Pilgrim vs. The World",
+    "director": "Edgar Wright",
+    "rating": 8,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BNWI5ODc4MTAtN2U2NC00ZDk3LWE3NjAtNjIyODE2YTlhYjYwXkEyXkFqcGdeQXVyOTA3ODI3NDA@._V1_.jpg",
+    "spineColor": "#b42c2e",
+    "textColor": "#fbfffc",
+    "slug": "/movies/scott-pilgrim-vs-the-world",
+    "content": "A slacker musician must defeat his new girlfriend's seven evil exes in a series of increasingly surreal video game-style battles. Wright's visual inventiveness is at its absolute peak — no film has ever captured the grammar and aesthetic of games as precisely as this one."
+  },
+  {
+    "title": "Speed Racer",
+    "director": "The Wachowskis",
+    "rating": 8,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMWU4Y2RhYzMtYzIxZC00NmRlLTk0OTctNDg1NTg5Yjk4YjQzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
+    "spineColor": "#000000",
+    "textColor": "#FFF",
+    "slug": "/movies/speed-racer",
+    "content": "A childhood favorite. May still be the best adaptation of commic-cartoons to the big screen. The colors, art, and general visual design of the movie stand up decades later. While it doesn't have the most advanced narrative or literary tricks and themes, it excels at what it was made to: conveying to kids a fun and inspiring story of the long-time pop-culture favorite: Speed Racer."
+  },
+  {
+    "title": "Spirited Away",
+    "director": "Hayao Miyazaki",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMjlmZmI5MDctNDE2YS00YWE0LWE5ZWItZDBhYWQ0NTcxNWRhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+    "spineColor": "#040404",
+    "textColor": "#e9eaeb",
+    "slug": "/movies/spirited-away",
+    "content": "A young girl accidentally enters the spirit world and must work in a magical bathhouse to save her parents, who have been transformed into pigs. Miyazaki's most beloved film is a masterclass in world-building and the power of unguarded imagination."
+  },
+  {
+    "title": "Star Trek",
+    "director": "J.J. Abrams",
+    "rating": 8,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMjlmZmI5MDctNDE2YS00YWE0LWE5ZWItZDBhYWQ0NTcxNWRhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+    "spineColor": "#f0f3f5",
+    "textColor": "#35363a",
+    "slug": "/movies/star-trek",
+    "content": "The crew of the Enterprise comes together for the first time as a young James Kirk and Spock face a time-traveling Romulan bent on revenge. Abrams' reboot is kinetic and crowd-pleasing — a skillful origin story that breathed real life into a beloved franchise."
+  },
+  {
+    "title": "Star Wars: Return of the Jedi",
+    "director": "Richard Marquand",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMjlmZmI5MDctNDE2YS00YWE0LWE5ZWItZDBhYWQ0NTcxNWRhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+    "spineColor": "#151422",
+    "textColor": "#a0a2a8",
+    "slug": "/movies/star-wars-return-of-the-jedi",
+    "content": "Luke Skywalker confronts Darth Vader and the Emperor in a final reckoning to determine the fate of the galaxy. The emotionally satisfying conclusion to the original trilogy, with the throne room confrontation standing as one of cinema's great dramatic climaxes."
+  },
+  {
+    "title": "Stop Making Sense",
+    "director": "Jonathan Demme",
+    "rating": 10,
+    "coverImage": "https://d135u4jtzauizi.cloudfront.net/unnamed-2_2023-08-17-141609_hpzb.jpg",
+    "spineColor": "#161817",
+    "textColor": "#db2323",
+    "slug": "/movies/stop-making-sense",
+    "content": "Jonathan Demme's concert film documents the Talking Heads' 1983 tour, beginning with just David Byrne and a boombox and building into a full-band theatrical spectacle. Widely considered the greatest concert film ever made."
+  },
+  {
+    "title": "Taxi Driver",
+    "director": "Martin Scorsese",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BM2M1MmVhNDgtNmI0YS00ZDNmLTkyNjctNTJiYTQ2N2NmYzc2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg",
+    "spineColor": "#e8e30d",
+    "textColor": "#f4290e",
+    "slug": "/movies/taxi-driver",
+    "content": "A mentally unstable veteran works as a nighttime taxi driver in New York City, growing increasingly obsessed with cleansing the streets of their corruption. Scorsese and De Niro's collaboration produced one of cinema's most haunting and enduring antiheroes."
+  },
+  {
+    "title": "The Big Lebowski",
+    "director": "Coen Brothers",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BNDQwMTAzOTkxNV5BMl5BanBnXkFtZTgwMjc0MTAwMjE@._V1_.jpg",
+    "spineColor": "#c7b85d",
+    "textColor": "#2a272b",
+    "slug": "/movies/the-big-lebowski",
+    "content": "A case of mistaken identity sends an unemployed slacker known as The Dude into a surreal kidnapping plot involving nihilists, a bowling league, and a missing rug. The Coens' loopiest film has only grown in stature over the decades."
+  },
+  {
+    "title": "The Dark Knight",
+    "director": "Christopher Nolan",
+    "rating": 8,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg",
+    "spineColor": "#011c2f",
+    "textColor": "#eef2f4",
+    "slug": "/movies/the-dark-night",
+    "content": "Batman faces his greatest challenge when a nihilistic criminal mastermind known as the Joker begins systematically dismantling Gotham’s social order. Heath Ledger’s transcendent performance anchors Nolan’s ambitious examination of chaos, power, and moral compromise."
+  },
+  {
+    "title": "The Good, The Bad, and The Ugly",
+    "director": "Sergio Leone",
+    "rating": 10,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BNjJlYmNkZGItM2NhYy00MjlmLTk5NmQtNjg1NmM2ODU4OTMwXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_.jpg",
+    "spineColor": "#faf8e9",
+    "textColor": "#0c0c0c",
+    "slug": "/movies/the-good-the-bad-and-the-ugly",
+    "content": "Three gunslingers compete to find a buried cache of Confederate gold during the American Civil War, circling each other across a vast and violent landscape. Leone's operatic spaghetti western is a masterpiece of patience and tension — Morricone's score is as essential as any frame of the film."
+  },
+  {
+    "title": "The Gorge",
+    "director": "Scott Derrickson",
+    "rating": 2,
+    "coverImage": "https://m.media-amazon.com/images/S/pv-target-images/aab0322a11698c77fe0dc30131b2ffdba59a73d3544a0b25cf5cb7d20e029f84.jpg",
+    "spineColor": "#1a1728",
+    "textColor": "#ffffff",
+    "slug": "/movies/the-gorge",
+    "content": "Two snipers stationed on opposite sides of an enormous gorge develop an unlikely connection, until they are forced to descend together into something lurking below. A high-concept genre film that leans into atmosphere over coherence."
+  },
+  {
+    "title": "The King's Speech",
+    "director": "Tom Hooper",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMzU5MjEwMTg2Nl5BMl5BanBnXkFtZTcwNzM3MTYxNA@@._V1_.jpg",
+    "spineColor": "#fca61b",
+    "textColor": "#a71a1c",
+    "slug": "/movies/the-kings-speech",
+    "content": "King George VI works with an unorthodox Australian speech therapist to overcome his debilitating stammer before addressing his nation at the outbreak of World War II. A deeply moving film about friendship, duty, and the hidden burdens of public life."
+  },
+  {
+    "title": "The Lord of the Rings",
+    "director": "Peter Jackson",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg",
+    "spineColor": "#22150a",
+    "textColor": "#d9c341",
+    "slug": "/movies/the-lord-of-the-rings",
+    "content": "Frodo Baggins is entrusted with a powerful ring that must be destroyed before it falls into the hands of the dark lord Sauron, setting in motion a war for Middle-earth. Jackson's trilogy is an astonishing feat of filmmaking — a faithful, emotionally overwhelming adaptation of Tolkien's mythology."
+  },
+  {
+    "title": "The Panic in Needle Park",
+    "director": "Jerry Schatzberg",
+    "rating": 8,
+    "coverImage": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659103062i/971702.jpg",
+    "spineColor": "#383232",
+    "textColor": "#e8c00a",
+    "slug": "/movies/the-panic-in-needle-park",
+    "content": "A young woman falls in love with a small-time heroin dealer in New York City's Hell's Kitchen and is gradually pulled into his world of addiction. A raw, unflinching portrait of dependency, notable for Al Pacino's breakthrough screen performance."
+  },
+  {
+    "title": "The Shawshank Redemption",
+    "director": "Frank Darabont",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
+    "spineColor": "#110706",
+    "textColor": "#d8d5c9",
+    "slug": "/movies/the-shawshank-redemption",
+    "content": "A man wrongly convicted of murder forms a profound friendship with a fellow prisoner over nearly two decades at Shawshank State Penitentiary. One of cinema's most beloved films — a story about hope, patience, and the endurance of the human spirit."
+  },
+  {
+    "title": "The Shining",
+    "director": "Stanley Kubrick",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BZWFlYmY2MGEtZjVkYS00YzU4LTg0YjQtYzY1ZGE3NTA5NGQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
+    "spineColor": "#f2e500",
+    "textColor": "#0b0602",
+    "slug": "/movies/the-shining",
+    "content": "A writer takes a job as winter caretaker at an isolated hotel, where the supernatural forces within slowly drive him to madness. Kubrick's meticulous horror masterpiece creates a sense of dread so palpable it never entirely leaves you."
+  },
+  {
+    "title": "The Social Network",
+    "director": "David Fincher",
+    "rating": 8,
+    "coverImage": "https://static.tvtropes.org/pmwiki/pub/images/thesocialnetwork.jpg",
+    "spineColor": "#111514",
+    "textColor": "#fffafe",
+    "slug": "/movies/the-social-network",
+    "content": "The founding of Facebook is told through dueling depositions as Mark Zuckerberg faces lawsuits from those he betrayed along the way. Fincher and Aaron Sorkin's collaboration is the defining film of the internet age — crackling, cold, and deeply unsettling."
+  },
+  {
+    "title": "There Will Be Blood",
+    "director": "Paul Thomas Anderson",
+    "rating": 9,
+    "coverImage": "https://m.media-amazon.com/images/M/MV5BMjAxODQ4MDU5NV5BMl5BanBnXkFtZTcwMDU4MjU1MQ@@._V1_FMjpg_UX1000_.jpg",
+    "spineColor": "#000201",
+    "textColor": "#eae8d2",
+    "slug": "/movies/there-will-be-blood",
+    "content": "An ambitious oil prospector and a charismatic young preacher clash in early 20th century California in a battle for land, money, and souls. Daniel Day-Lewis delivers one of cinema's greatest performances in PTA's sprawling, Faulknerian epic."
+  },
+  {
+    "title": "Whiplash",
+    "director": "Damien Chazelle",
+    "rating": 9,
+    "coverImage": "https://chambleeblueandgold.com/wp-content/uploads/2023/12/whiplash.jpeg",
+    "spineColor": "#000000",
+    "textColor": "#ffb700",
+    "slug": "/movies/whiplash",
+    "content": "An ambitious young jazz drummer at a prestigious conservatory is pushed to his breaking point by a tyrannical conductor who believes cruelty is the path to greatness. Chazelle's debut is relentlessly propulsive and raises genuine questions about the relationship between suffering and excellence."
+  }
+]

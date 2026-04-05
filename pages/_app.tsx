@@ -7,28 +7,48 @@ import { DefaultSeo } from "next-seo";
 import posthog from "posthog-js";
 import React from "react";
 import { useRouter } from "next/router";
-import { Lora } from "@next/font/google";
+import { Space_Grotesk, DM_Sans } from "next/font/google";
 
-const lora = Lora({ subsets: ["latin"], display: "swap" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], display: "swap" });
+const dmSans = DM_Sans({ subsets: ["latin"], display: "swap" });
 
 const theme = extendTheme(
   {
     fonts: {
-      heading: lora.style.fontFamily,
-      body: lora.style.fontFamily,
+      heading: spaceGrotesk.style.fontFamily,
+      body: dmSans.style.fontFamily,
+    },
+    styles: {
+      global: {
+        body: {
+          color: "gray.700",
+        },
+      },
     },
   },
   withProse({
     baseStyle: {
       "h1, h2, h3, h4, h5, h6": {
-        mt: 4,
-        mb: 4,
+        mt: 6,
+        mb: 2,
+        color: "gray.900",
+        fontFamily: spaceGrotesk.style.fontFamily,
       },
       p: {
         my: 3,
+        lineHeight: 1.75,
       },
       a: {
-        color: "blue.500",
+        color: "gray.900",
+        textDecoration: "underline",
+        textDecorationColor: "gray.300",
+        _hover: {
+          textDecorationColor: "gray.500",
+        },
+      },
+      li: {
+        lineHeight: 1.75,
+        my: 1,
       },
     },
   })
@@ -61,11 +81,11 @@ export default function App({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={theme}>
       <DefaultSeo
         title="Samuel Matlock"
-        description="I'm a constant learner and aspiring technical generalist. I'm also a founding enginer at thirdweb and on gap year from the University of Pennsylvania."
+        description="I'm a constant learner and aspiring technical generalist."
         openGraph={{
           title: "Samuel Matlock",
           description:
-            "I'm a constant learner and aspiring technical generalist. I'm also a founding enginer at thirdweb and on gap year from the University of Pennsylvania.",
+            "I'm a constant learner and aspiring technical generalist.",
           images: [
             {
               url: "https://adammaj.com/og-image-dark.jpg",

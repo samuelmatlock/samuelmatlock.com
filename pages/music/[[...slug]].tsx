@@ -12,37 +12,37 @@ import { GetStaticPropsContext, NextPageWithLayout } from "next";
 import Layout from "../../components/Layout";
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import { MDXRemote } from "next-mdx-remote";
-import { Book, getAllBooks, getAllSlugs, getBook } from "../../lib/books";
-import { Bookshelf } from "../../components/Bookshelf";
+import { Music, getAllMusic, getAllSlugs, getMusic } from "../../lib/music";
+import { Musicshelf } from "../../components/Musicshelf";
 import { Content } from "../../lib/mdx";
 import { NextSeo } from "next-seo";
 
-interface BooksProps {
-  books: Book[];
-  book?: Content<Book>;
+interface MusicProps {
+  musics: Music[];
+  music?: Content<Music>;
 }
 
-const Books: NextPageWithLayout<BooksProps> = ({ books, book }) => {
-  if (book) {
+const Musics: NextPageWithLayout<MusicProps> = ({ musics, music }) => {
+  if (music) {
     return (
       <>
         <NextSeo
-          title={book.metadata.title}
-          description={`${book.metadata.author} · ${book.metadata.date} · ${book.metadata.rating}/10`}
+          title={music.metadata.title}
+          description={`${music.metadata.artist} · ${music.metadata.rating}/10`}
           openGraph={{
-            title: book.metadata.title,
-            description: `${book.metadata.author} · ${book.metadata.date} · ${book.metadata.rating}/10`,
+            title: music.metadata.title,
+            description: `${music.metadata.artist} · ${music.metadata.rating}/10`,
           }}
         />
         <Stack spacing={4}>
           <VStack align="flex-start" spacing={1}>
-            <Heading size="lg">{book.metadata.title}</Heading>
+            <Heading size="lg">{music.metadata.title}</Heading>
             <Text fontSize="sm" color="gray.500">
-              {book.metadata.author} · {book.metadata.date} · {book.metadata.rating}/10
+              {music.metadata.artist} · {music.metadata.rating}/10
             </Text>
           </VStack>
           <Prose>
-            <MDXRemote compiledSource={book.source} scope={{}} frontmatter={{}} />
+            <MDXRemote compiledSource={music.source} scope={{}} frontmatter={{}} />
           </Prose>
         </Stack>
       </>
@@ -51,33 +51,33 @@ const Books: NextPageWithLayout<BooksProps> = ({ books, book }) => {
 
   return (
     <>
-      <NextSeo title="Books | Samuel Matlock" />
+      <NextSeo title="Music | Samuel Matlock" />
       <Stack spacing={0}>
-        {books
+        {musics
           .slice()
           .sort((a, b) => b.rating - a.rating)
-          .map((book, index) => (
-            <Stack key={book.title}>
+          .map((music, index) => (
+            <Stack key={music.title}>
               {index > 0 && <Divider borderColor="gray.100" />}
               <Flex py={5} gap={5} align="flex-start">
                 <Image
-                  src={book.coverImage}
-                  alt={book.title}
+                  src={music.coverImage}
+                  alt={music.title}
                   height={{ base: "90px", md: "110px" }}
                   flexShrink={0}
                 />
                 <VStack align="flex-start" spacing={1}>
-                  <Link href={book.slug}>
+                  <Link href={music.slug}>
                     <Text fontWeight="medium" _hover={{ color: "gray.500" }}>
-                      {book.title}
+                      {music.title}
                     </Text>
                   </Link>
                   <Text fontSize="sm" color="gray.400">
-                    {book.author} · {book.date} · {book.rating}/10
+                    {music.artist} · {music.rating}/10
                   </Text>
-                  {book.content && (
+                  {music.content && (
                     <Text fontSize="sm" color="gray.600" lineHeight="1.65" pt={1}>
-                      {book.content}
+                      {music.content}
                     </Text>
                   )}
                 </VStack>
@@ -89,12 +89,12 @@ const Books: NextPageWithLayout<BooksProps> = ({ books, book }) => {
   );
 };
 
-export default Books;
+export default Musics;
 
-Books.getLayout = (page: JSX.Element) => (
+Musics.getLayout = (page: JSX.Element) => (
   <Layout>
     <Flex direction="column" gap={8}>
-      <Bookshelf books={page.props.books} />
+      <Musicshelf music={page.props.musics} />
       <Divider borderColor="gray.100" />
       {page}
     </Flex>
@@ -111,19 +111,19 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
   if (params && params.slug && params.slug.length > 1) {
-    return { redirect: { destination: "/books" } };
+    return { redirect: { destination: "/music" } };
   }
 
-  const books = getAllBooks();
+  const musics = getAllMusic();
 
   if (!params || !params.slug || params.slug.length === 0) {
-    return { props: { books } };
+    return { props: { musics } };
   }
 
-  const book = await getBook(params.slug[0] as string);
-  if (!book) {
-    return { redirect: { destination: "/books" } };
+  const music = await getMusic(params.slug[0] as string);
+  if (!music) {
+    return { redirect: { destination: "/music" } };
   }
 
-  return { props: { books, book } };
+  return { props: { musics, music } };
 }

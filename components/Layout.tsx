@@ -4,24 +4,31 @@ import {
   Text,
   Flex,
   Box,
-  HStack,
   Menu,
   MenuButton,
   IconButton,
   MenuList,
-  MenuItem,
   Icon,
   MenuGroup,
-  useColorMode,
-  Button,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { PropsWithChildren } from "react";
 import { FiMenu } from "react-icons/fi";
-import { FaSun } from "react-icons/fa";
-import { CiCloudMoon } from "react-icons/ci";
+
+function NavLabel({ children }: { children: string }) {
+  return (
+    <Text
+      fontSize="xs"
+      fontWeight="semibold"
+      letterSpacing="widest"
+      color="gray.400"
+      mb={1}
+    >
+      {children}
+    </Text>
+  );
+}
 
 function Navigation({
   link,
@@ -38,102 +45,92 @@ function Navigation({
   const isActive =
     link === "/" ? router.asPath === link : router.asPath.includes(link);
 
-    const isDownloadLink = !!download;
+  const isDownloadLink = !!download;
+  const textProps = {
+    fontSize: "sm",
+    color: isActive ? "gray.900" : "gray.500",
+    fontWeight: isActive ? "medium" : "normal",
+    _hover: { color: "gray.900" },
+    transition: "color 0.15s",
+  };
 
-    if (isExternal || isDownloadLink) {
-      // For external or download links, render an <a> tag directly
-      return (
-        <a 
-          href={link} 
-          target={isExternal ? "_blank" : "_self"} 
-          rel={isExternal ? "noopener noreferrer" : undefined}
-          download={download}
-        >
-          <Text
-            fontSize="lg"
-            color={isActive ? "black" : "gray.500"}
-            _hover={{ color: "black" }}
-          >
-            {children}
-          </Text>
-        </a>
-      );
-    } else {
-      // For internal links, use Next.js Link component
-      return (
-        <Link href={link} passHref>
-          <Text
-            as="a" // Specify the Text component to render as an <a> tag
-            fontSize="lg"
-            color={isActive ? "black" : "gray.500"}
-            _hover={{ color: "black" }}
-          >
-            {children}
-          </Text>
-        </Link>
-      );
-    }
+  if (isExternal || isDownloadLink) {
+    return (
+      <a
+        href={link}
+        target={isExternal ? "_blank" : "_self"}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        download={download}
+      >
+        <Text {...textProps}>{children}</Text>
+      </a>
+    );
   }
+
+  return (
+    <Link href={link}>
+      <Text {...textProps}>{children}</Text>
+    </Link>
+  );
+}
 
 function Layout({ children }: PropsWithChildren) {
   return (
     <Container
       position="relative"
-      mt={{ base: 16, md: 20 }}
-      pb={{ base: 8, md: "10em" }}
-      gap={{ md: 10 }}
+      mt={{ base: 14, md: 16 }}
+      pb={{ base: 12, md: "8em" }}
     >
+      {/* Desktop sidebar */}
       <Flex
         position="absolute"
         right="100%"
-        mr="160px"
+        mr="140px"
         display={{ base: "none", lg: "flex" }}
       >
-        <VStack position="fixed" align="flex-start" spacing={10}>
-          <VStack align="flex-start">
-            <Text fontWeight="bold" fontSize="x-small">
-              NAVIGATION
-            </Text>
+        <VStack position="fixed" align="flex-start" spacing={7}>
+          <VStack align="flex-start" spacing={0}>
+            <NavLabel>NAVIGATION</NavLabel>
             <Navigation link="/">Home</Navigation>
             <Navigation link="SamuelMatlockResume.pdf" isExternal>Résumé</Navigation>
-            <Navigation link="/writing">Writing</Navigation>
+            {/* <Navigation link="/writing">Writing</Navigation> */}
           </VStack>
-          <VStack align="flex-start">
-            <Text fontWeight="bold" fontSize="x-small">
-              FAVORITES
-            </Text>
+          <VStack align="flex-start" spacing={0}>
+            <NavLabel>FAVORITES</NavLabel>
             <Navigation link="/books">Books</Navigation>
             <Navigation link="/music">Music</Navigation>
             <Navigation link="/movies">Movies</Navigation>
           </VStack>
-          <VStack align="flex-start">
-            <Text fontWeight="bold" fontSize="x-small">
-              FIND ME ON
-            </Text>
+          <VStack align="flex-start" spacing={0}>
+            <NavLabel>FIND ME ON</NavLabel>
             <Navigation link="https://twitter.com/samuelmatlock" isExternal>
               Twitter
             </Navigation>
-            <Navigation link="https://github.com/samuelmatlock" isExternal>
+            {/* <Navigation link="https://github.com/samuelmatlock" isExternal>
               GitHub
-            </Navigation>
+            </Navigation> */}
             <Navigation link="https://linkedin.com/in/samuelmatlock" isExternal>
               LinkedIn
             </Navigation>
           </VStack>
         </VStack>
       </Flex>
+
       <Container width={{ md: "container.md" }} position="relative">
+        {/* Desktop top bar */}
         <Box
           width="100%"
           bg="white"
-          height={20}
+          height={16}
           position="fixed"
           top={0}
           zIndex={100}
           display={{ base: "none", lg: "block" }}
         />
+
+        {/* Mobile top bar */}
         <Flex
-          justify="space-between"
+          justify="flex-end"
           position="fixed"
           top={0}
           display={{ base: "flex", lg: "none" }}
@@ -143,55 +140,50 @@ function Layout({ children }: PropsWithChildren) {
           width="100%"
           align="center"
           borderBottom="1px solid"
-          borderBottomColor="gray.200"
+          borderBottomColor="gray.100"
           bg="white"
+          px={6}
         >
-          <Container px={8}>
-            <Flex justify="space-between" justifyContent="flex-end" width="100%">
-            <Menu>
-                <MenuButton
-                  as={IconButton}
-                  aria-label="Options"
-                  icon={<Icon as={FiMenu} boxSize={5} />}
-                  variant="outline"
-                  size="sm"
-                />
-                <MenuList>
-                  <MenuGroup title="NAVIGATION">
-                    <VStack align="flex-start" px={4} spacing={3} mb={4}>
-                      <Navigation link="/">Home</Navigation>
-                      <Navigation link="SamuelMatlockResume.pdf" isExternal>Résumé</Navigation>
-                      <Navigation link="/writing">Writing</Navigation>
-                    </VStack>
-                  </MenuGroup>
-                  <MenuGroup title="FAVORITES">
-                    <VStack align="flex-start" px={4} spacing={3} mb={4}>
-                      <Navigation link="/books">Books</Navigation>
-                      <Navigation link="/music">Music</Navigation>
-                      <Navigation link="/movies">Movies</Navigation>
-                    </VStack>
-                  </MenuGroup>
-                  <MenuGroup title="FIND ME ON">
-                    <VStack align="flex-start" px={4} spacing={3} mb={2}>
-                      <Navigation
-                        link="https://twitter.com/samuelmatlock"
-                        isExternal
-                      >
-                        Twitter
-                      </Navigation>
-                      <Navigation link="https://github.com/samuelmatlock" isExternal>
-                        GitHub
-                      </Navigation>
-                      <Navigation link="https://linkedin.com/in/samuelmatlock" isExternal>
-                        LinkedIn
-                      </Navigation>
-                    </VStack>
-                  </MenuGroup>
-                </MenuList>
-              </Menu>
-            </Flex>
-          </Container>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              aria-label="Navigation"
+              icon={<Icon as={FiMenu} boxSize={4} />}
+              variant="ghost"
+              size="sm"
+            />
+            <MenuList>
+              <MenuGroup title="NAVIGATION">
+                <VStack align="flex-start" px={4} spacing={1} mb={3}>
+                  <Navigation link="/">Home</Navigation>
+                  <Navigation link="SamuelMatlockResume.pdf" isExternal>Résumé</Navigation>
+                  {/* <Navigation link="/writing">Writing</Navigation> */}
+                </VStack>
+              </MenuGroup>
+              <MenuGroup title="FAVORITES">
+                <VStack align="flex-start" px={4} spacing={1} mb={3}>
+                  <Navigation link="/books">Books</Navigation>
+                  <Navigation link="/music">Music</Navigation>
+                  <Navigation link="/movies">Movies</Navigation>
+                </VStack>
+              </MenuGroup>
+              <MenuGroup title="FIND ME ON">
+                <VStack align="flex-start" px={4} spacing={1} mb={2}>
+                  <Navigation link="https://twitter.com/samuelmatlock" isExternal>
+                    Twitter
+                  </Navigation>
+                  {/* <Navigation link="https://github.com/samuelmatlock" isExternal>
+                    GitHub
+                  </Navigation> */}
+                  <Navigation link="https://linkedin.com/in/samuelmatlock" isExternal>
+                    LinkedIn
+                  </Navigation>
+                </VStack>
+              </MenuGroup>
+            </MenuList>
+          </Menu>
         </Flex>
+
         {children}
       </Container>
     </Container>

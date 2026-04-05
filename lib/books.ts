@@ -1,4 +1,5 @@
-import { getMdxContent, MaybeContent } from "./mdx";
+import { serialize } from "next-mdx-remote/serialize";
+import { MaybeContent } from "./mdx";
 import path from "path";
 import fs from "fs";
 
@@ -11,30 +12,31 @@ export interface Book {
   spineColor: string;
   textColor: string;
   slug: string;
-  summary: string;
+  content: string;
 }
 
 export function getAllBooks(): Book[] {
   return JSON.parse(
-    fs.readFileSync(
-      path.join(process.cwd(), "content", "books", "index.json"),
-      "utf8"
-    )
+    fs.readFileSync(path.join(process.cwd(), "content", "books.json"), "utf8")
   );
 }
 
-export function getAllSlugs(): string[] {
-  const data = getAllBooks();
-  return data.map((item) => item.slug);
+export function getAllSlugs(): { params: { slug: string[] } }[] {
+  return getAllBooks().map((book) => ({
+    params: { slug: [book.slug.split("/").pop()!] },
+  }));
 }
 
 export async function getBook(slug: string): Promise<MaybeContent<Book>> {
-  const book = await getMdxContent<Book>("books", `${slug}.mdx`);
-  if (!book) {
-    return undefined;
-  }
+  const book = getAllBooks().find((b) => b.slug === `/books/${slug}`);
+  if (!book) return undefined;
+
+  const source = await serialize(book.content || "", {
+    mdxOptions: { development: false },
+  });
 
   return {
-    ...book,
+    metadata: book,
+    source: source.compiledSource,
   };
 }

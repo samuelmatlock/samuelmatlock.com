@@ -34,6 +34,9 @@ const theme = extendTheme(
         color: "gray.900",
         fontFamily: spaceGrotesk.style.fontFamily,
       },
+      h1: {
+        mt: 0,
+      },
       p: {
         my: 3,
         lineHeight: 1.75,

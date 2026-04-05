@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { PropsWithChildren } from "react";
 import { FiMenu } from "react-icons/fi";
+import { GeometricBackground } from "./GeometricBackground";
 
 function NavLabel({ children }: { children: string }) {
   return (
@@ -76,8 +77,11 @@ function Navigation({
 
 function Layout({ children }: PropsWithChildren) {
   return (
+    <>
+    <GeometricBackground />
     <Container
       position="relative"
+      zIndex={1}
       mt={{ base: 14, md: 16 }}
       pb={{ base: 12, md: "8em" }}
     >
@@ -120,7 +124,6 @@ function Layout({ children }: PropsWithChildren) {
         {/* Desktop top bar */}
         <Box
           width="100%"
-          bg="white"
           height={16}
           position="fixed"
           top={0}
@@ -187,6 +190,7 @@ function Layout({ children }: PropsWithChildren) {
         {children}
       </Container>
     </Container>
+    </>
   );
 }
 

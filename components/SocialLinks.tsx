@@ -53,16 +53,13 @@ function EmailCopy() {
           borderColor="gray.200"
           borderRadius="md"
           boxShadow="md"
-          p={4}
+          p={2}
           whiteSpace="nowrap"
           zIndex={100}
-          minW="240px"
+          minW="210px"
         >
-          {/* Header row */}
-          <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
-            <Box fontSize="xs" fontWeight="semibold" color="gray.500" letterSpacing="wide">
-              EMAIL
-            </Box>
+          {/* Close button */}
+          <Box display="flex" justifyContent="flex-end" mb={1}>
             <Box
               as="button"
               onClick={() => { setOpen(false); setCopied(false); }}
@@ -72,7 +69,7 @@ function EmailCopy() {
               alignItems="center"
               transition="color 0.15s"
             >
-              <Icon as={FiX} boxSize={3.5} />
+              <Icon as={FiX} boxSize={3} />
             </Box>
           </Box>
 
@@ -83,7 +80,7 @@ function EmailCopy() {
             size="sm"
             fontSize="xs"
             borderColor="gray.200"
-            mb={3}
+            mb={2}
             onFocus={(e) => e.target.select()}
           />
 

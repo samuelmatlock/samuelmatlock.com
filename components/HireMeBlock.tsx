@@ -4,7 +4,7 @@ export function HireMeBlock() {
   return (
     <Box bg="gray.900" borderRadius="md" px={5} py={4} mt={1} display="inline-block" pr={16}>
       <Text color="gray.200" lineHeight={1.75} fontSize="sm">
-        If you're recruiting, please check out my{" "}
+        <Text as="span" color="white" fontWeight="semibold">If you're recruiting,</Text> please check out my{" "}
         <Link
           href="https://linkedin.com/in/samuelmatlock"
           isExternal

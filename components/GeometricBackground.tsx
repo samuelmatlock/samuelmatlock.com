@@ -19,27 +19,82 @@ export function GeometricBackground() {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // --- Value noise implementation (no library needed) ---
+      const cache: Record<string, number> = {};
+
+      function gridVal(ix: number, iy: number): number {
+        const key = `${ix},${iy}`;
+        if (cache[key] === undefined) {
+          const n = Math.sin(ix * 127.1 + iy * 311.7) * 43758.5453;
+          cache[key] = n - Math.floor(n);
+        }
+        return cache[key];
+      }
+
+      function smoothstep(t: number): number {
+        return t * t * (3 - 2 * t);
+      }
+
+      function noise2d(nx: number, ny: number): number {
+        const ix = Math.floor(nx);
+        const iy = Math.floor(ny);
+        const fx = nx - ix;
+        const fy = ny - iy;
+        const ux = smoothstep(fx);
+        const uy = smoothstep(fy);
+        return (
+          gridVal(ix, iy) * (1 - ux) * (1 - uy) +
+          gridVal(ix + 1, iy) * ux * (1 - uy) +
+          gridVal(ix, iy + 1) * (1 - ux) * uy +
+          gridVal(ix + 1, iy + 1) * ux * uy
+        );
+      }
+
+      // Fractal brownian motion — multiple octaves for terrain-like detail
+      function fbm(x: number, y: number): number {
+        let val = 0;
+        let amp = 0.5;
+        let freq = 1;
+        for (let o = 0; o < 6; o++) {
+          val += noise2d(x * freq, y * freq) * amp;
+          amp *= 0.5;
+          freq *= 2.1;
+        }
+        return val; // ~[0, 1]
+      }
+
+      // Large-scale "continental" noise — controls where the big land masses are
+      const continentalScale = 120;
+      // Mid-scale variation within continents
+      const detailScale = 45;
+
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
           const x = i * spacing;
           const y = j * spacing;
 
-          // Layered sine waves at different angles/frequencies for organic topo contours
-          const wave =
-            Math.sin(x * 0.018 + y * 0.011) * 0.38 +
-            Math.sin(x * 0.011 - y * 0.019 + 1.3) * 0.32 +
-            Math.cos(x * 0.007 + y * 0.023 + 0.6) * 0.2 +
-            Math.cos(x * 0.022 - y * 0.008 + 2.1) * 0.1;
+          const continental = fbm(x / continentalScale, y / continentalScale);
+          const detail = fbm(x / detailScale + 5.3, y / detailScale + 2.7);
 
-          const t = (wave + 1) / 2; // normalize to [0, 1]
+          // Combine: continental drives big structure, detail adds texture
+          const combined = continental * 0.7 + detail * 0.3;
 
-          const minR = 0.5;
-          const maxR = spacing * 0.42;
-          const radius = minR + t * (maxR - minR);
+          // Sharpen contrast — raises highs and drops lows for true void/dense split
+          const shaped = Math.pow(combined, 1.8);
+
+          // True voids: skip drawing below threshold
+          const voidThreshold = 0.18;
+          if (shaped < voidThreshold) continue;
+
+          // Map remainder to radius — small max so dots stay small
+          const tLocal = (shaped - voidThreshold) / (1 - voidThreshold);
+          const maxR = spacing * 0.26;
+          const minR = 0.3;
+          const radius = minR + tLocal * (maxR - minR);
 
           ctx.beginPath();
           ctx.arc(x, y, radius, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(0, 0, 0, 0.055)";
+          ctx.fillStyle = "rgba(0, 0, 0, 0.22)";
           ctx.fill();
         }
       }

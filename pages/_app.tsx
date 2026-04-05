@@ -48,7 +48,7 @@ const theme = extendTheme(
       },
       li: {
         lineHeight: 1.75,
-        my: 1,
+        my: 0,
       },
     },
   })

@@ -53,26 +53,27 @@ function EmailCopy() {
           borderColor="gray.200"
           borderRadius="md"
           boxShadow="md"
-          p={3}
-          pt={4}
+          p={4}
           whiteSpace="nowrap"
           zIndex={100}
           minW="240px"
         >
-          {/* Close button */}
-          <Box
-            as="button"
-            position="absolute"
-            top={1}
-            right={1}
-            onClick={() => { setOpen(false); setCopied(false); }}
-            color="gray.400"
-            _hover={{ color: "gray.700" }}
-            display="flex"
-            alignItems="center"
-            p={1}
-          >
-            <Icon as={FiX} boxSize={3} />
+          {/* Header row */}
+          <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+            <Box fontSize="xs" fontWeight="semibold" color="gray.500" letterSpacing="wide">
+              EMAIL
+            </Box>
+            <Box
+              as="button"
+              onClick={() => { setOpen(false); setCopied(false); }}
+              color="gray.400"
+              _hover={{ color: "gray.700" }}
+              display="flex"
+              alignItems="center"
+              transition="color 0.15s"
+            >
+              <Icon as={FiX} boxSize={3.5} />
+            </Box>
           </Box>
 
           {/* Email input */}
@@ -82,20 +83,23 @@ function EmailCopy() {
             size="sm"
             fontSize="xs"
             borderColor="gray.200"
-            mb={2}
+            mb={3}
             onFocus={(e) => e.target.select()}
           />
 
           {/* Copy button */}
-          <Box
-            as="button"
-            onClick={handleCopy}
-            fontSize="xs"
-            color={copied ? "green.500" : "gray.500"}
-            _hover={{ color: copied ? "green.500" : "gray.800" }}
-            transition="color 0.15s"
-          >
-            {copied ? "Copied!" : "Copy"}
+          <Box textAlign="center">
+            <Box
+              as="button"
+              onClick={handleCopy}
+              fontSize="xs"
+              fontWeight="bold"
+              color={copied ? "green.500" : "gray.700"}
+              _hover={{ color: copied ? "green.500" : "gray.900" }}
+              transition="color 0.15s"
+            >
+              {copied ? "Copied!" : "Copy to clipboard"}
+            </Box>
           </Box>
         </Box>
       )}

@@ -45,7 +45,7 @@ function EmailCopy() {
       {open && (
         <Box
           position="absolute"
-          bottom="calc(100% + 8px)"
+          top="calc(100% + 8px)"
           left="50%"
           transform="translateX(-50%)"
           bg="white"

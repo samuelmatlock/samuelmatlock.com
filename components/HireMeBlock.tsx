@@ -1,7 +1,7 @@
 import { Box, Text, Link } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 
-const STAR_COUNT = 12;
+const STAR_COUNT = 8;
 
 interface Star {
   x: number;
@@ -19,7 +19,7 @@ function initStars(w: number, h: number): Star[] {
     size: 1.5 + Math.random() * 2,
     opacity: Math.random(),
     targetOpacity: Math.random(),
-    speed: 0.02 + Math.random() * 0.04,
+    speed: 0.012 + Math.random() * 0.018,
   }));
 }
 
@@ -45,11 +45,18 @@ export function HireMeBlock() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       starsRef.current.forEach((star) => {
-        // Fade toward target
-        if (Math.abs(star.opacity - star.targetOpacity) < star.speed) {
-          star.targetOpacity = Math.random();
-        } else {
-          star.opacity += (star.targetOpacity - star.opacity) * star.speed * 3;
+        star.opacity += (star.targetOpacity - star.opacity) * star.speed * 3;
+
+        if (Math.abs(star.opacity - star.targetOpacity) < 0.02) {
+          if (star.targetOpacity < 0.05) {
+            // Fully faded out — move to new random position then fade back in
+            star.x = Math.random() * canvas.width;
+            star.y = Math.random() * canvas.height;
+            star.targetOpacity = 0.6 + Math.random() * 0.4;
+          } else {
+            // Fully faded in — fade back out
+            star.targetOpacity = 0;
+          }
         }
 
         const alpha = Math.max(0, Math.min(1, star.opacity));

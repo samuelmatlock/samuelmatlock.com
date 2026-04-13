@@ -99,7 +99,17 @@ export function Musicshelf({ music }: MusicshelfProps) {
       if (btn) {
         const viewportWidth = viewportRef.current.offsetWidth;
         const expandedW = width * 10;
-        const target = btn.offsetLeft - (viewportWidth - expandedW) / 2;
+        const itemLeft = btn.offsetLeft;
+        const itemRight = itemLeft + expandedW;
+        const viewStart = scrollValRef.current;
+        const viewEnd = viewStart + viewportWidth;
+        const pad = 16;
+        let target = viewStart;
+        if (itemLeft < viewStart + pad) {
+          target = itemLeft - pad;
+        } else if (itemRight > viewEnd - pad) {
+          target = itemRight - viewportWidth + pad;
+        }
         applyScroll(target);
         setScroll(target);
       }
@@ -177,14 +187,14 @@ export function Musicshelf({ music }: MusicshelfProps) {
                     justifyContent: "flex-start", outline: "none", flexShrink: 0,
                     width: musicIndex === index ? musicWidth : spineWidth,
                     perspective: "1000px", WebkitPerspective: "1000px",
-                    gap: "0px", transition: "width 500ms ease",
+                    gap: "0px", transition: "width 600ms cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
                 >
-                  <Flex alignItems="flex-start" justifyContent="center" width={spineWidth} height={musicHeight} flexShrink={0} transformOrigin="right" backgroundColor={item.spineColor} color={item.textColor} transform={`rotateY(${musicIndex === index ? "-60deg" : "0deg"})`} transition="all 500ms ease" willChange="auto" filter="brightness(0.8) contrast(2)" style={{ transformStyle: "preserve-3d" }}>
+                  <Flex alignItems="flex-start" justifyContent="center" width={spineWidth} height={musicHeight} flexShrink={0} transformOrigin="right" backgroundColor={item.spineColor} color={item.textColor} transform={`rotateY(${musicIndex === index ? "-60deg" : "0deg"})`} transition="all 600ms cubic-bezier(0.4, 0, 0.2, 1)" willChange="auto" filter="brightness(0.8) contrast(2)" style={{ transformStyle: "preserve-3d" }}>
                     <span style={{ pointerEvents: "none", position: "fixed", top: 0, left: 0, zIndex: 50, height: musicHeight, width: spineWidth, opacity: 0.4, filter: "url(#paper)" }} />
                     <Heading mt="12px" as="h2" fontSize="xs" fontFamily={`"DM Sans", sans-serif`} style={{ writingMode: "vertical-rl" }} userSelect="none" textOverflow="ellipsis" whiteSpace="nowrap" overflow="hidden" maxHeight={`${height - 24}px`}>{item.title}</Heading>
                   </Flex>
-                  <Box position="relative" flexShrink={0} overflow="hidden" transformOrigin="left" transform={`rotateY(${musicIndex === index ? "30deg" : "88.8deg"})`} transition="all 500ms ease" willChange="auto" filter="brightness(0.8) contrast(2)" style={{ transformStyle: "preserve-3d" }}>
+                  <Box position="relative" flexShrink={0} overflow="hidden" transformOrigin="left" transform={`rotateY(${musicIndex === index ? "30deg" : "88.8deg"})`} transition="all 600ms cubic-bezier(0.4, 0, 0.2, 1)" willChange="auto" filter="brightness(0.8) contrast(2)" style={{ transformStyle: "preserve-3d" }}>
                     <span style={{ pointerEvents: "none", position: "fixed", top: 0, right: 0, zIndex: 50, height: musicHeight, width: coverWidth, opacity: 0.4, filter: "url(#paper)" }} />
                     <span style={{ pointerEvents: "none", position: "absolute", top: 0, left: 0, zIndex: 50, height: musicHeight, width: coverWidth, background: `linear-gradient(to right, rgba(255,255,255,0) 2px, rgba(255,255,255,0.5) 3px, rgba(255,255,255,0.25) 4px, rgba(255,255,255,0.25) 6px, transparent 7px, transparent 9px, rgba(255,255,255,0.25) 9px, transparent 12px)` }} />
                     <Image src={item.coverImage} alt={item.title} width={coverWidth} height={musicHeight} style={{ transition: "all 500ms ease", willChange: "auto" }} />

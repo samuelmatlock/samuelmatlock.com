@@ -103,7 +103,17 @@ export function Bookshelf({ books }: BookshelfProps) {
       if (btn) {
         const viewportWidth = viewportRef.current.offsetWidth;
         const expandedW = width * 5;
-        const target = btn.offsetLeft - (viewportWidth - expandedW) / 2;
+        const itemLeft = btn.offsetLeft;
+        const itemRight = itemLeft + expandedW;
+        const viewStart = scrollValRef.current;
+        const viewEnd = viewStart + viewportWidth;
+        const pad = 16;
+        let target = viewStart;
+        if (itemLeft < viewStart + pad) {
+          target = itemLeft - pad;
+        } else if (itemRight > viewEnd - pad) {
+          target = itemRight - viewportWidth + pad;
+        }
         applyScroll(target);
         setScroll(target);
       }
@@ -203,7 +213,7 @@ export function Bookshelf({ books }: BookshelfProps) {
                     perspective: "1000px",
                     WebkitPerspective: "1000px",
                     gap: "0px",
-                    transition: "width 500ms ease",
+                    transition: "width 600ms cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
                 >
                   <Flex
@@ -216,7 +226,7 @@ export function Bookshelf({ books }: BookshelfProps) {
                     backgroundColor={book.spineColor}
                     color={book.textColor}
                     transform={`rotateY(${bookIndex === index ? "-60deg" : "0deg"})`}
-                    transition="all 500ms ease"
+                    transition="all 600ms cubic-bezier(0.4, 0, 0.2, 1)"
                     willChange="auto"
                     filter="brightness(0.8) contrast(2)"
                     style={{ transformStyle: "preserve-3d" }}
@@ -243,7 +253,7 @@ export function Bookshelf({ books }: BookshelfProps) {
                     overflow="hidden"
                     transformOrigin="left"
                     transform={`rotateY(${bookIndex === index ? "30deg" : "88.8deg"})`}
-                    transition="all 500ms ease"
+                    transition="all 600ms cubic-bezier(0.4, 0, 0.2, 1)"
                     willChange="auto"
                     filter="brightness(0.8) contrast(2)"
                     style={{ transformStyle: "preserve-3d" }}

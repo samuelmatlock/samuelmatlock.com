@@ -16,7 +16,7 @@ function initStars(w: number, h: number): Star[] {
   return Array.from({ length: STAR_COUNT }, () => ({
     x: Math.random() * w,
     y: Math.random() * h,
-    size: 1.5 + Math.random() * 2,
+    size: 0.8 + Math.random() * 1.2,
     opacity: Math.random(),
     targetOpacity: Math.random(),
     speed: 0.012 + Math.random() * 0.018,

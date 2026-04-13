@@ -26,7 +26,7 @@ export function SocialLinks() {
   };
 
   return (
-    <VStack align="flex-start" spacing={0} ref={containerRef}>
+    <VStack align="flex-start" spacing={0} ref={containerRef} style={{ marginBottom: open ? "-16px" : "0" }}>
       <HStack spacing={4} mt={1} alignItems="center">
         <Link href="https://linkedin.com/in/samuelmatlock" isExternal aria-label="LinkedIn" display="flex" alignItems="center">
           <Icon as={FaLinkedinIn} boxSize={5} color="gray.400" _hover={{ color: "gray.700" }} transition="color 0.15s" />
@@ -57,7 +57,6 @@ export function SocialLinks() {
       {open && (
         <Box
           mt={4}
-          mb={-4}
           bg="white"
           border="1px solid"
           borderColor="gray.200"

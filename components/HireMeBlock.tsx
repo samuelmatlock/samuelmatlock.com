@@ -1,13 +1,51 @@
-import { Box, Text, Link, keyframes } from "@chakra-ui/react";
+import { Box, Text, Link } from "@chakra-ui/react";
+import { useEffect, useRef, useState } from "react";
 
-const orbit = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-`;
+const ORB_SIZE = 6;
+const SPEED = 1.8;
 
 export function HireMeBlock() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const posRef = useRef({ x: 20, y: 0 });
+  const velRef = useRef({ x: SPEED, y: SPEED * 0.7 });
+  const rafRef = useRef<number>();
+  const [pos, setPos] = useState({ x: 20, y: 0 });
+
+  useEffect(() => {
+    const step = () => {
+      const el = containerRef.current;
+      if (!el) { rafRef.current = requestAnimationFrame(step); return; }
+
+      const w = el.offsetWidth;
+      const h = el.offsetHeight;
+      const maxX = w - ORB_SIZE;
+      const maxY = h - ORB_SIZE;
+
+      let { x, y } = posRef.current;
+      let { x: vx, y: vy } = velRef.current;
+
+      x += vx;
+      y += vy;
+
+      if (x <= 0) { x = 0; vx = Math.abs(vx); }
+      if (x >= maxX) { x = maxX; vx = -Math.abs(vx); }
+      if (y <= 0) { y = 0; vy = Math.abs(vy); }
+      if (y >= maxY) { y = maxY; vy = -Math.abs(vy); }
+
+      posRef.current = { x, y };
+      velRef.current = { x: vx, y: vy };
+      setPos({ x, y });
+
+      rafRef.current = requestAnimationFrame(step);
+    };
+
+    rafRef.current = requestAnimationFrame(step);
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+  }, []);
+
   return (
     <Box
+      ref={containerRef}
       position="relative"
       bg="gray.900"
       borderRadius="md"
@@ -16,35 +54,22 @@ export function HireMeBlock() {
       mt={1}
       display={{ base: "block", md: "inline-block" }}
       pr={{ base: 5, md: 16 }}
-      overflow="visible"
+      overflow="hidden"
     >
-      {/* Orbiting light */}
+      {/* Bouncing orb */}
       <Box
         position="absolute"
-        top="-4px"
-        left="-4px"
-        right="-4px"
-        bottom="-4px"
-        borderRadius="md"
+        w={`${ORB_SIZE}px`}
+        h={`${ORB_SIZE}px`}
+        borderRadius="full"
+        bg="white"
         pointerEvents="none"
-        sx={{
-          animation: `${orbit} 5s linear infinite`,
-          transformOrigin: "center center",
+        style={{
+          top: pos.y,
+          left: pos.x,
+          boxShadow: "0 0 8px 4px rgba(255,255,255,0.7), 0 0 16px 6px rgba(255,255,255,0.25)",
         }}
-      >
-        <Box
-          position="absolute"
-          top="-3px"
-          left="calc(50% - 3px)"
-          w="6px"
-          h="6px"
-          borderRadius="full"
-          bg="white"
-          sx={{
-            boxShadow: "0 0 8px 4px rgba(255,255,255,0.8), 0 0 16px 6px rgba(255,255,255,0.3)",
-          }}
-        />
-      </Box>
+      />
 
       <Text color="gray.200" lineHeight={1.75} fontSize={{ base: "xs", md: "sm" }}>
         <Text as="span" color="white" fontWeight="semibold">If you're recruiting,</Text> please check out my{" "}

@@ -2,7 +2,7 @@ import { Box, Text, Link } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
 const ORB_SIZE = 6;
-const SPEED = 1.8;
+const SPEED = 1.1;
 
 export function HireMeBlock() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -62,12 +62,12 @@ export function HireMeBlock() {
         w={`${ORB_SIZE}px`}
         h={`${ORB_SIZE}px`}
         borderRadius="full"
-        bg="white"
+        bg="whiteAlpha.400"
         pointerEvents="none"
         style={{
           top: pos.y,
           left: pos.x,
-          boxShadow: "0 0 8px 4px rgba(255,255,255,0.7), 0 0 16px 6px rgba(255,255,255,0.25)",
+          boxShadow: "0 0 6px 3px rgba(255,255,255,0.3), 0 0 12px 5px rgba(255,255,255,0.1)",
         }}
       />
 

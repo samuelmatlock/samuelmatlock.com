@@ -1,7 +1,7 @@
 import { Box, Text, Link } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 
-const STAR_COUNT = 8;
+const STAR_COUNT = 3;
 
 interface Star {
   x: number;

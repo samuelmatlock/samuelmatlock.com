@@ -94,12 +94,17 @@ export function Movieshelf({ movies }: MovieshelfProps) {
   }, []);
 
   React.useEffect(() => {
-    if (movieIndex > -1) {
-      const target = (movieIndex - (moviesInViewport - 4.5) / 2) * (width + 11);
-      applyScroll(target);
-      setScroll(target);
+    if (movieIndex > -1 && trackRef.current && viewportRef.current) {
+      const btn = trackRef.current.children[movieIndex] as HTMLElement;
+      if (btn) {
+        const viewportWidth = viewportRef.current.offsetWidth;
+        const expandedW = width * 7;
+        const target = btn.offsetLeft - (viewportWidth - expandedW) / 2;
+        applyScroll(target);
+        setScroll(target);
+      }
     }
-  }, [movieIndex, moviesInViewport, applyScroll]);
+  }, [movieIndex, applyScroll]);
 
   React.useEffect(() => {
     if (viewportDimensions) {

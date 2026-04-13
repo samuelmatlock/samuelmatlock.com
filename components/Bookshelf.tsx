@@ -98,12 +98,17 @@ export function Bookshelf({ books }: BookshelfProps) {
   }, []);
 
   React.useEffect(() => {
-    if (bookIndex > -1) {
-      const target = (bookIndex - (booksInViewport - 4.5) / 2) * (width + 11);
-      applyScroll(target);
-      setScroll(target);
+    if (bookIndex > -1 && trackRef.current && viewportRef.current) {
+      const btn = trackRef.current.children[bookIndex] as HTMLElement;
+      if (btn) {
+        const viewportWidth = viewportRef.current.offsetWidth;
+        const expandedW = width * 5;
+        const target = btn.offsetLeft - (viewportWidth - expandedW) / 2;
+        applyScroll(target);
+        setScroll(target);
+      }
     }
-  }, [bookIndex, booksInViewport, applyScroll]);
+  }, [bookIndex, applyScroll]);
 
   React.useEffect(() => {
     if (viewportDimensions) {

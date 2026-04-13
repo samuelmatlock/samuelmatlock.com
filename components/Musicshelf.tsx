@@ -94,12 +94,17 @@ export function Musicshelf({ music }: MusicshelfProps) {
   }, []);
 
   React.useEffect(() => {
-    if (musicIndex > -1) {
-      const target = (musicIndex - (musicInViewport - 4.5) / 2) * (width + 11);
-      applyScroll(target);
-      setScroll(target);
+    if (musicIndex > -1 && trackRef.current && viewportRef.current) {
+      const btn = trackRef.current.children[musicIndex] as HTMLElement;
+      if (btn) {
+        const viewportWidth = viewportRef.current.offsetWidth;
+        const expandedW = width * 10;
+        const target = btn.offsetLeft - (viewportWidth - expandedW) / 2;
+        applyScroll(target);
+        setScroll(target);
+      }
     }
-  }, [musicIndex, musicInViewport, applyScroll]);
+  }, [musicIndex, applyScroll]);
 
   React.useEffect(() => {
     if (viewportDimensions) {

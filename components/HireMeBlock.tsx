@@ -1,69 +1,91 @@
 import { Box, Text, Link } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-const ORB_SIZE = 6;
-const SPEED = 1.5;
-const BORDER_RADIUS = 6; // matches Chakra "md"
+const STAR_COUNT = 28;
 
-function getOrbPos(w: number, h: number, progress: number) {
-  const r = BORDER_RADIUS;
-  const arcLen = (Math.PI / 2) * r;
-  const topLen = w - 2 * r;
-  const rightLen = h - 2 * r;
-  const bottomLen = w - 2 * r;
-  const leftLen = h - 2 * r;
+interface Star {
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  targetOpacity: number;
+  speed: number;
+}
 
-  const segments = [topLen, arcLen, rightLen, arcLen, bottomLen, arcLen, leftLen, arcLen];
-  const perimeter = segments.reduce((a, b) => a + b, 0);
-  const p = ((progress % perimeter) + perimeter) % perimeter;
-
-  let remaining = p;
-  let seg = 0;
-  while (seg < segments.length - 1 && remaining >= segments[seg]) {
-    remaining -= segments[seg];
-    seg++;
-  }
-
-  const t = remaining / segments[seg];
-  const half = ORB_SIZE / 2;
-  let cx = 0, cy = 0;
-
-  switch (seg) {
-    case 0: cx = r + t * topLen; cy = 0; break;
-    case 1: { const a = -Math.PI / 2 + t * Math.PI / 2; cx = (w - r) + r * Math.cos(a); cy = r + r * Math.sin(a); break; }
-    case 2: cx = w; cy = r + t * rightLen; break;
-    case 3: { const a = t * Math.PI / 2; cx = (w - r) + r * Math.cos(a); cy = (h - r) + r * Math.sin(a); break; }
-    case 4: cx = (w - r) - t * bottomLen; cy = h; break;
-    case 5: { const a = Math.PI / 2 + t * Math.PI / 2; cx = r + r * Math.cos(a); cy = (h - r) + r * Math.sin(a); break; }
-    case 6: cx = 0; cy = (h - r) - t * leftLen; break;
-    case 7: { const a = Math.PI + t * Math.PI / 2; cx = r + r * Math.cos(a); cy = r + r * Math.sin(a); break; }
-  }
-
-  return { x: cx - half, y: cy - half };
+function initStars(w: number, h: number): Star[] {
+  return Array.from({ length: STAR_COUNT }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    size: 1.5 + Math.random() * 2,
+    opacity: Math.random(),
+    targetOpacity: Math.random(),
+    speed: 0.005 + Math.random() * 0.015,
+  }));
 }
 
 export function HireMeBlock() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef(0);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const starsRef = useRef<Star[]>([]);
   const rafRef = useRef<number>();
-  const [pos, setPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const step = () => {
-      const el = containerRef.current;
-      if (el) {
-        progressRef.current += SPEED;
-        setPos(getOrbPos(el.offsetWidth, el.offsetHeight, progressRef.current));
-      }
-      rafRef.current = requestAnimationFrame(step);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      starsRef.current = initStars(canvas.width, canvas.height);
     };
-    rafRef.current = requestAnimationFrame(step);
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+    resize();
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      starsRef.current.forEach((star) => {
+        // Fade toward target
+        if (Math.abs(star.opacity - star.targetOpacity) < star.speed) {
+          star.targetOpacity = Math.random();
+        } else {
+          star.opacity += (star.targetOpacity - star.opacity) * star.speed * 3;
+        }
+
+        const alpha = Math.max(0, Math.min(1, star.opacity));
+
+        // Glow
+        const grd = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.size * 4);
+        grd.addColorStop(0, `rgba(255,255,255,${alpha * 0.6})`);
+        grd.addColorStop(1, `rgba(255,255,255,0)`);
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size * 4, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+
+        // Core dot
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.fill();
+      });
+
+      rafRef.current = requestAnimationFrame(draw);
+    };
+
+    rafRef.current = requestAnimationFrame(draw);
+
+    const observer = new ResizeObserver(resize);
+    observer.observe(canvas);
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      observer.disconnect();
+    };
   }, []);
 
   return (
     <Box
-      ref={containerRef}
       position="relative"
       bg="gray.900"
       borderRadius="md"
@@ -72,23 +94,20 @@ export function HireMeBlock() {
       mt={1}
       width="100%"
       pr={{ base: 5, md: 16 }}
-      overflow="visible"
+      overflow="hidden"
     >
-      <Box
-        position="absolute"
-        w={`${ORB_SIZE}px`}
-        h={`${ORB_SIZE}px`}
-        borderRadius="full"
-        bg="whiteAlpha.500"
-        pointerEvents="none"
+      <canvas
+        ref={canvasRef}
         style={{
-          top: pos.y,
-          left: pos.x,
-          boxShadow: "0 0 6px 3px rgba(255,255,255,0.3), 0 0 12px 5px rgba(255,255,255,0.1)",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          pointerEvents: "none",
         }}
       />
-
-      <Text color="gray.200" lineHeight={1.75} fontSize={{ base: "xs", md: "sm" }}>
+      <Text position="relative" color="gray.200" lineHeight={1.75} fontSize={{ base: "xs", md: "sm" }}>
         <Text as="span" color="white" fontWeight="semibold">If you're recruiting,</Text> please check out my{" "}
         <Link
           href="https://linkedin.com/in/samuelmatlock"

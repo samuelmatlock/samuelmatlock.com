@@ -57,9 +57,12 @@ export function SocialLinks() {
       {open && (
         <Box
           mt={4}
-          borderTop="1px solid"
-          borderColor="gray.100"
-          pt={3}
+          bg="white"
+          border="1px solid"
+          borderColor="gray.200"
+          borderRadius="md"
+          boxShadow="sm"
+          p={3}
           w="220px"
         >
           <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>

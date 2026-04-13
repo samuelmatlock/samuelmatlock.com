@@ -75,8 +75,8 @@ export function SocialLinks() {
             top={2}
             right={2}
             onClick={() => { setOpen(false); setCopied(false); }}
-            color="gray.300"
-            _hover={{ color: "gray.600" }}
+            color="gray.500"
+            _hover={{ color: "gray.800" }}
             display="flex"
             alignItems="center"
             transition="color 0.15s"

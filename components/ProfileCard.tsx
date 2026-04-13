@@ -6,7 +6,7 @@ export function ProfileCard() {
     <Box
       bg="white"
       border="1px solid"
-      borderColor="gray.100"
+      borderColor="gray.200"
       borderRadius="xl"
       px={5}
       py={5}

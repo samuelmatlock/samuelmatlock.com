@@ -16,10 +16,22 @@ interface ShootingStar {
 }
 
 function spawnStar(w: number, h: number): ShootingStar {
-  const angle = Math.random() * Math.PI * 2;
+  // Pick a random edge (0=top, 1=right, 2=bottom, 3=left)
+  const edge = Math.floor(Math.random() * 4);
+  let x = 0, y = 0;
+  if (edge === 0) { x = Math.random() * w; y = -8; }
+  else if (edge === 1) { x = w + 8; y = Math.random() * h; }
+  else if (edge === 2) { x = Math.random() * w; y = h + 8; }
+  else { x = -8; y = Math.random() * h; }
+
+  // Angle pointing toward the interior of the box from that edge
+  const cx = w / 2, cy = h / 2;
+  const baseAngle = Math.atan2(cy - y, cx - x);
+  const spread = Math.PI * 0.35;
+  const angle = baseAngle + (Math.random() - 0.5) * spread;
+
   return {
-    x: Math.random() * w,
-    y: Math.random() * h,
+    x, y,
     vx: Math.cos(angle) * SPEED,
     vy: Math.sin(angle) * SPEED,
     opacity: 0,

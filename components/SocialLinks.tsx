@@ -63,6 +63,7 @@ export function SocialLinks() {
           borderRadius="md"
           boxShadow="sm"
           px={5}
+          pr={8}
           py={4}
           position="relative"
           display="inline-block"
@@ -102,6 +103,7 @@ export function SocialLinks() {
               fontWeight="semibold"
               px={3}
               py={1}
+              w="80px"
               borderRadius="md"
               border="1px solid"
               borderColor={copied ? "green.400" : "gray.300"}
@@ -110,6 +112,7 @@ export function SocialLinks() {
               _hover={{ bg: copied ? "green.50" : "gray.100", borderColor: copied ? "green.400" : "gray.400" }}
               transition="all 0.15s"
               whiteSpace="nowrap"
+              textAlign="center"
             >
               {copied ? "Copied!" : "Copy"}
             </Box>

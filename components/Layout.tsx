@@ -92,7 +92,7 @@ function Layout({ children }: PropsWithChildren) {
         mr="140px"
         display={{ base: "none", lg: "flex" }}
       >
-        <VStack position="fixed" top={16} align="flex-start" spacing={7}>
+        <VStack position="fixed" top={16} align="flex-start" spacing={7} bg="white" borderRadius="xl" px={5} py={5}>
           <VStack align="flex-start" spacing={0}>
             <NavLabel>NAVIGATION</NavLabel>
             <Navigation link="/">Home</Navigation>

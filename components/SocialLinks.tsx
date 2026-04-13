@@ -62,36 +62,39 @@ export function SocialLinks() {
           borderColor="gray.200"
           borderRadius="md"
           boxShadow="sm"
-          p={3}
-          w="220px"
+          px={5}
+          py={4}
+          position="relative"
+          display="inline-block"
         >
-          <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-            <Box fontSize="xs" color="gray.400" textAlign="center" flex={1}>Sam's Email</Box>
-            <Box
-              as="button"
-              onClick={() => { setOpen(false); setCopied(false); }}
-              color="gray.300"
-              _hover={{ color: "gray.600" }}
-              display="flex"
-              alignItems="center"
-              transition="color 0.15s"
-            >
-              <Icon as={FiX} boxSize={3} />
-            </Box>
+          {/* X close in top right */}
+          <Box
+            as="button"
+            position="absolute"
+            top={2}
+            right={2}
+            onClick={() => { setOpen(false); setCopied(false); }}
+            color="gray.300"
+            _hover={{ color: "gray.600" }}
+            display="flex"
+            alignItems="center"
+            transition="color 0.15s"
+          >
+            <Icon as={FiX} boxSize={3} />
           </Box>
 
-          <Input
-            value="samuel.matlock1@gmail.com"
-            isReadOnly
-            size="sm"
-            fontSize="xs"
-            borderColor="gray.200"
-            bg="gray.50"
-            mb={2}
-            onFocus={(e) => e.target.select()}
-          />
-
-          <Box textAlign="center">
+          {/* Input + Copy side by side */}
+          <HStack spacing={2} alignItems="center">
+            <Input
+              value="samuel.matlock1@gmail.com"
+              isReadOnly
+              size="sm"
+              fontSize="xs"
+              borderColor="gray.200"
+              bg="gray.50"
+              w="180px"
+              onFocus={(e) => e.target.select()}
+            />
             <Box
               as="button"
               onClick={handleCopy}
@@ -100,10 +103,11 @@ export function SocialLinks() {
               color={copied ? "green.500" : "gray.500"}
               _hover={{ color: copied ? "green.500" : "gray.800" }}
               transition="color 0.15s"
+              whiteSpace="nowrap"
             >
-              {copied ? "Copied!" : "Copy to clipboard"}
+              {copied ? "Copied!" : "Copy"}
             </Box>
-          </Box>
+          </HStack>
         </Box>
       )}
     </VStack>

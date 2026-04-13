@@ -56,21 +56,19 @@ export function SocialLinks() {
 
       {open && (
         <Box
-          mt={3}
-          bg="white"
-          border="1px solid"
-          borderColor="gray.200"
-          borderRadius="md"
-          boxShadow="sm"
-          p={3}
-          w="210px"
+          mt={4}
+          borderTop="1px solid"
+          borderColor="gray.100"
+          pt={3}
+          w="220px"
         >
-          <Box display="flex" justifyContent="flex-end" mb={1}>
+          <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+            <Box fontSize="xs" color="gray.400">samuel.matlock1@gmail.com</Box>
             <Box
               as="button"
               onClick={() => { setOpen(false); setCopied(false); }}
-              color="gray.400"
-              _hover={{ color: "gray.700" }}
+              color="gray.300"
+              _hover={{ color: "gray.600" }}
               display="flex"
               alignItems="center"
               transition="color 0.15s"
@@ -85,6 +83,7 @@ export function SocialLinks() {
             size="sm"
             fontSize="xs"
             borderColor="gray.200"
+            bg="gray.50"
             mb={2}
             onFocus={(e) => e.target.select()}
           />
@@ -94,9 +93,9 @@ export function SocialLinks() {
               as="button"
               onClick={handleCopy}
               fontSize="xs"
-              fontWeight="bold"
-              color={copied ? "green.500" : "gray.700"}
-              _hover={{ color: copied ? "green.500" : "gray.900" }}
+              fontWeight="semibold"
+              color={copied ? "green.500" : "gray.500"}
+              _hover={{ color: copied ? "green.500" : "gray.800" }}
               transition="color 0.15s"
             >
               {copied ? "Copied!" : "Copy to clipboard"}

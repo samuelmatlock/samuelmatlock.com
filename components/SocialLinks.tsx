@@ -23,6 +23,7 @@ export function SocialLinks() {
   const handleCopy = () => {
     navigator.clipboard.writeText("samuel.matlock1@gmail.com");
     setCopied(true);
+    setTimeout(() => { setOpen(false); setCopied(false); }, 5000);
   };
 
   return (

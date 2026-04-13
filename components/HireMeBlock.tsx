@@ -70,7 +70,7 @@ export function HireMeBlock() {
       px={5}
       py={4}
       mt={1}
-      display={{ base: "block", md: "inline-block" }}
+      width="100%"
       pr={{ base: 5, md: 16 }}
       overflow="visible"
     >

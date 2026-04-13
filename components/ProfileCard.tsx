@@ -1,4 +1,4 @@
-import { Box, Heading, Text, Link } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { SocialLinks } from "./SocialLinks";
 
 export function ProfileCard() {
@@ -10,9 +10,9 @@ export function ProfileCard() {
       borderRadius="xl"
       px={5}
       py={5}
-      display="inline-block"
+      width="100%"
       overflow="visible"
-      mb={6}
+      mb={4}
     >
       <Heading
         as="h1"

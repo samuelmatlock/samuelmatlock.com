@@ -1,7 +1,7 @@
 import { Box, Text, Link } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 
-const STAR_COUNT = 28;
+const STAR_COUNT = 12;
 
 interface Star {
   x: number;
@@ -19,7 +19,7 @@ function initStars(w: number, h: number): Star[] {
     size: 1.5 + Math.random() * 2,
     opacity: Math.random(),
     targetOpacity: Math.random(),
-    speed: 0.005 + Math.random() * 0.015,
+    speed: 0.02 + Math.random() * 0.04,
   }));
 }
 

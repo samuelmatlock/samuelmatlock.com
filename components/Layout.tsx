@@ -23,7 +23,7 @@ function NavLabel({ children }: { children: string }) {
       fontSize="xs"
       fontWeight="semibold"
       letterSpacing="widest"
-      color="gray.300"
+      color="#b0bec5"
       mb={1}
     >
       {children}

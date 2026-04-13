@@ -198,6 +198,14 @@ export function Bookshelf({ books }: BookshelfProps) {
         </defs>
       </svg>
 
+      <Box
+        bg="white"
+        border="1px solid"
+        borderColor="gray.200"
+        borderRadius="xl"
+        px={5}
+        py={5}
+      >
       <Box position="relative" ref={bookshelfRef}>
         <Box
           position="absolute"
@@ -375,6 +383,7 @@ export function Bookshelf({ books }: BookshelfProps) {
             <Icon as={FaChevronRight} boxSize={3} />
           </Center>
         </Box>
+      </Box>
       </Box>
     </>
   );

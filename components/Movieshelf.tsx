@@ -198,6 +198,14 @@ export function Movieshelf({ movies }: MovieshelfProps) {
         </defs>
       </svg>
 
+      <Box
+        bg="white"
+        border="1px solid"
+        borderColor="gray.200"
+        borderRadius="xl"
+        px={5}
+        py={5}
+      >
       <Box position="relative" ref={movieshelfRef}>
         <Box
           position="absolute"
@@ -375,6 +383,7 @@ export function Movieshelf({ movies }: MovieshelfProps) {
             <Icon as={FaChevronRight} boxSize={3} />
           </Center>
         </Box>
+      </Box>
       </Box>
     </>
   );

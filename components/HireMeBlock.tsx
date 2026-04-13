@@ -1,32 +1,41 @@
 import { Box, Text, Link } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 
-const STAR_COUNT = 4;
+const TRAIL_LENGTH = 18;
+const SPEED = 6;
+const SPAWN_INTERVAL = 2000; // ms between spawns
 
-interface Star {
+interface ShootingStar {
   x: number;
   y: number;
-  size: number;
+  vx: number;
+  vy: number;
   opacity: number;
-  targetOpacity: number;
-  speed: number;
+  phase: "in" | "travel" | "out";
+  trail: { x: number; y: number }[];
 }
 
-function initStars(w: number, h: number): Star[] {
-  return Array.from({ length: STAR_COUNT }, () => ({
-    x: Math.random() * w,
-    y: Math.random() * h,
-    size: 0.8 + Math.random() * 1.2,
-    opacity: Math.random(),
-    targetOpacity: Math.random(),
-    speed: 0.012 + Math.random() * 0.018,
-  }));
+function spawnStar(w: number, h: number): ShootingStar {
+  // Start from random point on the top or left edge, aim diagonally down-right with slight angle variation
+  const angle = (Math.PI / 5) + (Math.random() - 0.5) * (Math.PI / 8);
+  const startX = Math.random() * w * 0.7;
+  const startY = Math.random() * h * 0.5;
+  return {
+    x: startX,
+    y: startY,
+    vx: Math.cos(angle) * SPEED,
+    vy: Math.sin(angle) * SPEED,
+    opacity: 0,
+    phase: "in",
+    trail: [],
+  };
 }
 
 export function HireMeBlock() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const starsRef = useRef<Star[]>([]);
+  const starsRef = useRef<ShootingStar[]>([]);
   const rafRef = useRef<number>();
+  const lastSpawnRef = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -37,44 +46,71 @@ export function HireMeBlock() {
     const resize = () => {
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
-      starsRef.current = initStars(canvas.width, canvas.height);
     };
     resize();
 
-    const draw = () => {
+    const draw = (timestamp: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      starsRef.current.forEach((star) => {
-        star.opacity += (star.targetOpacity - star.opacity) * star.speed * 3;
+      // Spawn a new star every SPAWN_INTERVAL ms
+      if (timestamp - lastSpawnRef.current > SPAWN_INTERVAL) {
+        starsRef.current.push(spawnStar(canvas.width, canvas.height));
+        lastSpawnRef.current = timestamp;
+      }
 
-        if (Math.abs(star.opacity - star.targetOpacity) < 0.02) {
-          if (star.targetOpacity < 0.05) {
-            // Fully faded out — move to new random position then fade back in
-            star.x = Math.random() * canvas.width;
-            star.y = Math.random() * canvas.height;
-            star.targetOpacity = 0.6 + Math.random() * 0.4;
-          } else {
-            // Fully faded in — fade back out
-            star.targetOpacity = 0;
-          }
+      starsRef.current = starsRef.current.filter((star) => {
+        // Update trail
+        star.trail.unshift({ x: star.x, y: star.y });
+        if (star.trail.length > TRAIL_LENGTH) star.trail.pop();
+
+        // Move
+        star.x += star.vx;
+        star.y += star.vy;
+
+        // Fade in quickly, then fade out as it leaves bounds
+        if (star.phase === "in") {
+          star.opacity = Math.min(1, star.opacity + 0.12);
+          if (star.opacity >= 1) star.phase = "travel";
         }
 
-        const alpha = Math.max(0, Math.min(1, star.opacity));
+        const outOfBounds =
+          star.x > canvas.width + 20 ||
+          star.y > canvas.height + 20 ||
+          star.x < -20;
 
-        // Glow
-        const grd = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.size * 4);
-        grd.addColorStop(0, `rgba(255,255,255,${alpha * 0.6})`);
+        if (outOfBounds || star.phase === "out") {
+          star.phase = "out";
+          star.opacity = Math.max(0, star.opacity - 0.08);
+          if (star.opacity <= 0) return false;
+        }
+
+        // Draw trail
+        for (let i = 0; i < star.trail.length; i++) {
+          const t = star.trail[i];
+          const alpha = star.opacity * (1 - i / star.trail.length) * 0.6;
+          const radius = 1.5 * (1 - i / star.trail.length);
+          ctx.beginPath();
+          ctx.arc(t.x, t.y, Math.max(0.1, radius), 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+          ctx.fill();
+        }
+
+        // Draw head glow
+        const grd = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, 5);
+        grd.addColorStop(0, `rgba(255,255,255,${star.opacity * 0.9})`);
         grd.addColorStop(1, `rgba(255,255,255,0)`);
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size * 4, 0, Math.PI * 2);
+        ctx.arc(star.x, star.y, 5, 0, Math.PI * 2);
         ctx.fillStyle = grd;
         ctx.fill();
 
-        // Core dot
+        // Draw head dot
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.arc(star.x, star.y, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${star.opacity})`;
         ctx.fill();
+
+        return true;
       });
 
       rafRef.current = requestAnimationFrame(draw);

@@ -2,49 +2,61 @@ import { Box, Text, Link } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
 const ORB_SIZE = 6;
-const SPEED = 0.6; // px per frame along perimeter
+const SPEED = 1.5;
+const BORDER_RADIUS = 6; // matches Chakra "md"
+
+function getOrbPos(w: number, h: number, progress: number) {
+  const r = BORDER_RADIUS;
+  const arcLen = (Math.PI / 2) * r;
+  const topLen = w - 2 * r;
+  const rightLen = h - 2 * r;
+  const bottomLen = w - 2 * r;
+  const leftLen = h - 2 * r;
+
+  const segments = [topLen, arcLen, rightLen, arcLen, bottomLen, arcLen, leftLen, arcLen];
+  const perimeter = segments.reduce((a, b) => a + b, 0);
+  const p = ((progress % perimeter) + perimeter) % perimeter;
+
+  let remaining = p;
+  let seg = 0;
+  while (seg < segments.length - 1 && remaining >= segments[seg]) {
+    remaining -= segments[seg];
+    seg++;
+  }
+
+  const t = remaining / segments[seg];
+  const half = ORB_SIZE / 2;
+  let cx = 0, cy = 0;
+
+  switch (seg) {
+    case 0: cx = r + t * topLen; cy = 0; break;
+    case 1: { const a = -Math.PI / 2 + t * Math.PI / 2; cx = (w - r) + r * Math.cos(a); cy = r + r * Math.sin(a); break; }
+    case 2: cx = w; cy = r + t * rightLen; break;
+    case 3: { const a = t * Math.PI / 2; cx = (w - r) + r * Math.cos(a); cy = (h - r) + r * Math.sin(a); break; }
+    case 4: cx = (w - r) - t * bottomLen; cy = h; break;
+    case 5: { const a = Math.PI / 2 + t * Math.PI / 2; cx = r + r * Math.cos(a); cy = (h - r) + r * Math.sin(a); break; }
+    case 6: cx = 0; cy = (h - r) - t * leftLen; break;
+    case 7: { const a = Math.PI + t * Math.PI / 2; cx = r + r * Math.cos(a); cy = r + r * Math.sin(a); break; }
+  }
+
+  return { x: cx - half, y: cy - half };
+}
 
 export function HireMeBlock() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef(0); // distance along perimeter
-  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const progressRef = useRef(0);
   const rafRef = useRef<number>();
+  const [pos, setPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const step = () => {
       const el = containerRef.current;
-      if (!el) { rafRef.current = requestAnimationFrame(step); return; }
-
-      const w = el.offsetWidth;
-      const h = el.offsetHeight;
-      const perimeter = 2 * (w + h);
-
-      progressRef.current = (progressRef.current + SPEED) % perimeter;
-      const p = progressRef.current;
-
-      let x = 0, y = 0;
-      if (p < w) {
-        // top edge left→right
-        x = p;
-        y = 0;
-      } else if (p < w + h) {
-        // right edge top→bottom
-        x = w - ORB_SIZE;
-        y = p - w;
-      } else if (p < 2 * w + h) {
-        // bottom edge right→left
-        x = w - ORB_SIZE - (p - w - h);
-        y = h - ORB_SIZE;
-      } else {
-        // left edge bottom→top
-        x = 0;
-        y = h - ORB_SIZE - (p - 2 * w - h);
+      if (el) {
+        progressRef.current += SPEED;
+        setPos(getOrbPos(el.offsetWidth, el.offsetHeight, progressRef.current));
       }
-
-      setPos({ x, y });
       rafRef.current = requestAnimationFrame(step);
     };
-
     rafRef.current = requestAnimationFrame(step);
     return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
   }, []);
@@ -60,15 +72,14 @@ export function HireMeBlock() {
       mt={1}
       display={{ base: "block", md: "inline-block" }}
       pr={{ base: 5, md: 16 }}
-      overflow="hidden"
+      overflow="visible"
     >
-      {/* Perimeter orb */}
       <Box
         position="absolute"
         w={`${ORB_SIZE}px`}
         h={`${ORB_SIZE}px`}
         borderRadius="full"
-        bg="whiteAlpha.400"
+        bg="whiteAlpha.500"
         pointerEvents="none"
         style={{
           top: pos.y,
@@ -84,7 +95,6 @@ export function HireMeBlock() {
           isExternal
           fontWeight="bold"
           sx={{ color: "white !important", textDecoration: "underline !important", textDecorationColor: "rgba(255,255,255,0.7) !important" }}
-          _hover={{ sx: { textDecorationColor: "white !important" } }}
         >
           LinkedIn
         </Link>{" "}
@@ -94,7 +104,6 @@ export function HireMeBlock() {
           isExternal
           fontWeight="bold"
           sx={{ color: "white !important", textDecoration: "underline !important", textDecorationColor: "rgba(255,255,255,0.7) !important" }}
-          _hover={{ sx: { textDecorationColor: "white !important" } }}
         >
           Résumé
         </Link>

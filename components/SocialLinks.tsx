@@ -55,9 +55,16 @@ export function SocialLinks() {
         </Box>
       </HStack>
 
-      {open && (
+      <Box
+          style={{
+            marginTop: open ? "14px" : "0px",
+            maxHeight: open ? "120px" : "0px",
+            opacity: open ? 1 : 0,
+            overflow: "hidden",
+            transition: "max-height 0.3s ease, opacity 0.25s ease, margin-top 0.3s ease",
+          }}
+        >
         <Box
-          style={{ marginTop: "14px" }}
           bg="white"
           border="1px solid"
           borderColor="gray.200"
@@ -119,7 +126,7 @@ export function SocialLinks() {
             </Box>
           </HStack>
         </Box>
-      )}
+        </Box>
     </VStack>
   );
 }

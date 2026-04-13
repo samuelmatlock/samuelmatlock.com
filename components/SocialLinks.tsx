@@ -1,9 +1,9 @@
-import { HStack, Link, Icon, Box, Input } from "@chakra-ui/react";
+import { VStack, HStack, Link, Icon, Box, Input } from "@chakra-ui/react";
 import { FaLinkedinIn, FaTwitter, FaGithub, FaEnvelope } from "react-icons/fa";
 import { FiX } from "react-icons/fi";
 import { useState, useRef, useEffect } from "react";
 
-function EmailCopy() {
+export function SocialLinks() {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -26,39 +26,45 @@ function EmailCopy() {
   };
 
   return (
-    <Box position="relative" display="inline-flex" alignItems="center" ref={containerRef}>
-      <Box
-        as="button"
-        onClick={() => { setOpen((v) => !v); setCopied(false); }}
-        aria-label="Show email"
-        display="flex"
-        alignItems="center"
-      >
-        <Icon
-          as={FaEnvelope}
-          boxSize={5}
-          color="gray.400"
-          _hover={{ color: "gray.700" }}
-          transition="color 0.15s"
-        />
-      </Box>
+    <VStack align="flex-start" spacing={0} ref={containerRef}>
+      <HStack spacing={4} mt={1} alignItems="center">
+        <Link href="https://linkedin.com/in/samuelmatlock" isExternal aria-label="LinkedIn" display="flex" alignItems="center">
+          <Icon as={FaLinkedinIn} boxSize={5} color="gray.400" _hover={{ color: "gray.700" }} transition="color 0.15s" />
+        </Link>
+        <Link href="https://twitter.com/samuelmatlock" isExternal aria-label="Twitter" display="flex" alignItems="center">
+          <Icon as={FaTwitter} boxSize={5} color="gray.400" _hover={{ color: "gray.700" }} transition="color 0.15s" />
+        </Link>
+        <Link href="https://github.com/samuelmatlock" isExternal aria-label="GitHub" display="flex" alignItems="center">
+          <Icon as={FaGithub} boxSize={5} color="gray.400" _hover={{ color: "gray.700" }} transition="color 0.15s" />
+        </Link>
+        <Box
+          as="button"
+          onClick={() => { setOpen((v) => !v); setCopied(false); }}
+          aria-label="Show email"
+          display="flex"
+          alignItems="center"
+        >
+          <Icon
+            as={FaEnvelope}
+            boxSize={5}
+            color={open ? "gray.700" : "gray.400"}
+            _hover={{ color: "gray.700" }}
+            transition="color 0.15s"
+          />
+        </Box>
+      </HStack>
+
       {open && (
         <Box
-          position="absolute"
-          top="calc(100% + 8px)"
-          left="50%"
-          transform="translateX(-50%)"
+          mt={3}
           bg="white"
           border="1px solid"
           borderColor="gray.200"
           borderRadius="md"
-          boxShadow="md"
-          p={2}
-          whiteSpace="nowrap"
-          zIndex={100}
-          minW="210px"
+          boxShadow="sm"
+          p={3}
+          w="210px"
         >
-          {/* Close button */}
           <Box display="flex" justifyContent="flex-end" mb={1}>
             <Box
               as="button"
@@ -73,7 +79,6 @@ function EmailCopy() {
             </Box>
           </Box>
 
-          {/* Email input */}
           <Input
             value="samuel.matlock1@gmail.com"
             isReadOnly
@@ -84,7 +89,6 @@ function EmailCopy() {
             onFocus={(e) => e.target.select()}
           />
 
-          {/* Copy button */}
           <Box textAlign="center">
             <Box
               as="button"
@@ -100,23 +104,6 @@ function EmailCopy() {
           </Box>
         </Box>
       )}
-    </Box>
-  );
-}
-
-export function SocialLinks() {
-  return (
-    <HStack spacing={4} mt={1} alignItems="center">
-      <Link href="https://linkedin.com/in/samuelmatlock" isExternal aria-label="LinkedIn" display="flex" alignItems="center">
-        <Icon as={FaLinkedinIn} boxSize={5} color="gray.400" _hover={{ color: "gray.700" }} transition="color 0.15s" />
-      </Link>
-      <Link href="https://twitter.com/samuelmatlock" isExternal aria-label="Twitter" display="flex" alignItems="center">
-        <Icon as={FaTwitter} boxSize={5} color="gray.400" _hover={{ color: "gray.700" }} transition="color 0.15s" />
-      </Link>
-      <Link href="https://github.com/samuelmatlock" isExternal aria-label="GitHub" display="flex" alignItems="center">
-        <Icon as={FaGithub} boxSize={5} color="gray.400" _hover={{ color: "gray.700" }} transition="color 0.15s" />
-      </Link>
-      <EmailCopy />
-    </HStack>
+    </VStack>
   );
 }

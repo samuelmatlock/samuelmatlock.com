@@ -2,14 +2,13 @@ import { Box, Text, Link } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
 const ORB_SIZE = 6;
-const SPEED = 1.1;
+const SPEED = 0.6; // px per frame along perimeter
 
 export function HireMeBlock() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const posRef = useRef({ x: 20, y: 0 });
-  const velRef = useRef({ x: SPEED, y: SPEED * 0.7 });
+  const progressRef = useRef(0); // distance along perimeter
+  const [pos, setPos] = useState({ x: 0, y: 0 });
   const rafRef = useRef<number>();
-  const [pos, setPos] = useState({ x: 20, y: 0 });
 
   useEffect(() => {
     const step = () => {
@@ -18,24 +17,31 @@ export function HireMeBlock() {
 
       const w = el.offsetWidth;
       const h = el.offsetHeight;
-      const maxX = w - ORB_SIZE;
-      const maxY = h - ORB_SIZE;
+      const perimeter = 2 * (w + h);
 
-      let { x, y } = posRef.current;
-      let { x: vx, y: vy } = velRef.current;
+      progressRef.current = (progressRef.current + SPEED) % perimeter;
+      const p = progressRef.current;
 
-      x += vx;
-      y += vy;
+      let x = 0, y = 0;
+      if (p < w) {
+        // top edge left→right
+        x = p;
+        y = 0;
+      } else if (p < w + h) {
+        // right edge top→bottom
+        x = w - ORB_SIZE;
+        y = p - w;
+      } else if (p < 2 * w + h) {
+        // bottom edge right→left
+        x = w - ORB_SIZE - (p - w - h);
+        y = h - ORB_SIZE;
+      } else {
+        // left edge bottom→top
+        x = 0;
+        y = h - ORB_SIZE - (p - 2 * w - h);
+      }
 
-      if (x <= 0) { x = 0; vx = Math.abs(vx); }
-      if (x >= maxX) { x = maxX; vx = -Math.abs(vx); }
-      if (y <= 0) { y = 0; vy = Math.abs(vy); }
-      if (y >= maxY) { y = maxY; vy = -Math.abs(vy); }
-
-      posRef.current = { x, y };
-      velRef.current = { x: vx, y: vy };
       setPos({ x, y });
-
       rafRef.current = requestAnimationFrame(step);
     };
 
@@ -56,7 +62,7 @@ export function HireMeBlock() {
       pr={{ base: 5, md: 16 }}
       overflow="hidden"
     >
-      {/* Bouncing orb */}
+      {/* Perimeter orb */}
       <Box
         position="absolute"
         w={`${ORB_SIZE}px`}

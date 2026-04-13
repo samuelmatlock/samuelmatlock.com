@@ -38,11 +38,6 @@ export function SocialLinks() {
         <Link href="https://github.com/samuelmatlock" isExternal aria-label="GitHub" display="flex" alignItems="center">
           <Icon as={FaGithub} boxSize={5} color="gray.400" _hover={{ color: "gray.700" }} transition="color 0.15s" />
         </Link>
-        <Box display="flex" alignItems="center" gap={1} color="gray.400" fontSize="sm">
-          <span style={{ fontSize: "0.85rem" }}>📍</span>
-          <Box as="span" fontSize="xs">Manhattan</Box>
-        </Box>
-
         <Box
           as="button"
           onClick={() => { setOpen((v) => !v); setCopied(false); }}
@@ -57,6 +52,11 @@ export function SocialLinks() {
             _hover={{ color: "gray.700" }}
             transition="color 0.15s"
           />
+        </Box>
+
+        <Box display="flex" alignItems="center" gap={1} color="gray.400">
+          <span style={{ fontSize: "0.85rem" }}>📍</span>
+          <Box as="span" fontSize="sm" fontFamily="heading">Manhattan</Box>
         </Box>
       </HStack>
 

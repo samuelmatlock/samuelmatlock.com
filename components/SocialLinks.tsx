@@ -54,9 +54,9 @@ export function SocialLinks() {
           />
         </Box>
 
-        <Box display="flex" alignItems="center" gap={1} color="gray.400" ml={3}>
-          <span style={{ fontSize: "1.1rem" }}>📍</span>
-          <Box as="span" fontSize="md" fontFamily="heading">Manhattan</Box>
+        <Box display="flex" alignItems="center" gap={1} ml={6}>
+          <span style={{ fontSize: "1.1rem", position: "relative", top: "1px" }}>📍</span>
+          <Box as="span" fontSize="md" fontFamily="heading" color="gray.500" position="relative" top="1px">Manhattan</Box>
         </Box>
       </HStack>
 

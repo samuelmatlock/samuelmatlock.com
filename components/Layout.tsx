@@ -23,7 +23,7 @@ function NavLabel({ children }: { children: string }) {
       fontSize="xs"
       fontWeight="semibold"
       letterSpacing="widest"
-      color="gray.400"
+      color="gray.300"
       mb={1}
     >
       {children}
@@ -49,7 +49,7 @@ function Navigation({
   const isDownloadLink = !!download;
   const textProps = {
     fontSize: "sm",
-    color: isActive ? "gray.900" : "gray.500",
+    color: isActive ? "gray.900" : "gray.600",
     fontWeight: isActive ? "medium" : "normal",
     _hover: { color: "gray.900" },
     transition: "color 0.15s",

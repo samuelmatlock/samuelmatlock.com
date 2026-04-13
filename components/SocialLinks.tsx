@@ -56,7 +56,8 @@ export function SocialLinks() {
 
       {open && (
         <Box
-          mt={4}
+          mt={2}
+          mb={-2}
           bg="white"
           border="1px solid"
           borderColor="gray.200"

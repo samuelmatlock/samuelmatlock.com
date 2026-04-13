@@ -16,13 +16,10 @@ interface ShootingStar {
 }
 
 function spawnStar(w: number, h: number): ShootingStar {
-  // Start from random point on the top or left edge, aim diagonally down-right with slight angle variation
-  const angle = (Math.PI / 5) + (Math.random() - 0.5) * (Math.PI / 8);
-  const startX = Math.random() * w * 0.7;
-  const startY = Math.random() * h * 0.5;
+  const angle = Math.random() * Math.PI * 2;
   return {
-    x: startX,
-    y: startY,
+    x: Math.random() * w,
+    y: Math.random() * h,
     vx: Math.cos(angle) * SPEED,
     vy: Math.sin(angle) * SPEED,
     opacity: 0,

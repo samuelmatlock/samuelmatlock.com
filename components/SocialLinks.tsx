@@ -28,7 +28,7 @@ export function SocialLinks() {
 
   return (
     <VStack align="flex-start" spacing={0} ref={containerRef} style={{ marginBottom: open ? "0px" : "0" }}>
-      <HStack spacing={4} mt={1} alignItems="center">
+      <HStack spacing={4} mt={1} alignItems="center" flexWrap="wrap">
         <Link href="https://linkedin.com/in/samuelmatlock" isExternal aria-label="LinkedIn" display="flex" alignItems="center">
           <Icon as={FaLinkedinIn} boxSize={5} color="gray.400" _hover={{ color: "gray.700" }} transition="color 0.15s" />
         </Link>
@@ -38,6 +38,11 @@ export function SocialLinks() {
         <Link href="https://github.com/samuelmatlock" isExternal aria-label="GitHub" display="flex" alignItems="center">
           <Icon as={FaGithub} boxSize={5} color="gray.400" _hover={{ color: "gray.700" }} transition="color 0.15s" />
         </Link>
+        <Box display="flex" alignItems="center" gap={1} color="gray.400" fontSize="sm">
+          <span style={{ fontSize: "0.85rem" }}>📍</span>
+          <Box as="span" fontSize="xs">Manhattan</Box>
+        </Box>
+
         <Box
           as="button"
           onClick={() => { setOpen((v) => !v); setCopied(false); }}

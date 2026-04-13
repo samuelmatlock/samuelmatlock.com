@@ -56,7 +56,7 @@ export function SocialLinks() {
 
       {open && (
         <Box
-          mt={4}
+          style={{ marginTop: "20px" }}
           bg="white"
           border="1px solid"
           borderColor="gray.200"

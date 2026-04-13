@@ -66,7 +66,7 @@ export function SocialLinks() {
           w="220px"
         >
           <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-            <Box fontSize="xs" color="gray.400">Sam's email</Box>
+            <Box fontSize="xs" color="gray.400">Sam's Email</Box>
             <Box
               as="button"
               onClick={() => { setOpen(false); setCopied(false); }}

@@ -92,7 +92,7 @@ export function SocialLinks() {
               fontSize="xs"
               borderColor="gray.200"
               bg="gray.50"
-              w="180px"
+              w="200px"
               onFocus={(e) => e.target.select()}
             />
             <Box
@@ -100,9 +100,15 @@ export function SocialLinks() {
               onClick={handleCopy}
               fontSize="xs"
               fontWeight="semibold"
-              color={copied ? "green.500" : "gray.500"}
-              _hover={{ color: copied ? "green.500" : "gray.800" }}
-              transition="color 0.15s"
+              px={3}
+              py={1}
+              borderRadius="md"
+              border="1px solid"
+              borderColor={copied ? "green.400" : "gray.300"}
+              color={copied ? "green.500" : "gray.600"}
+              bg={copied ? "green.50" : "gray.50"}
+              _hover={{ bg: copied ? "green.50" : "gray.100", borderColor: copied ? "green.400" : "gray.400" }}
+              transition="all 0.15s"
               whiteSpace="nowrap"
             >
               {copied ? "Copied!" : "Copy"}

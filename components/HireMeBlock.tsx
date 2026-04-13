@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 
 const TRAIL_LENGTH = 18;
 const SPEED = 6;
-const SPAWN_INTERVAL = 2000; // ms between spawns
+const SPAWN_INTERVAL = 1000; // ms between spawns
 
 interface ShootingStar {
   x: number;

@@ -75,11 +75,12 @@ export function SocialLinks() {
           borderColor="gray.200"
           borderRadius="md"
           boxShadow="sm"
-          px={5}
-          pr={8}
-          py={4}
+          px={{ base: 3, md: 5 }}
+          pr={{ base: 3, md: 8 }}
+          py={3}
           position="relative"
-          display="inline-block"
+          width={{ base: "100%", md: "auto" }}
+          display="block"
         >
           {/* X close in top right */}
           <Box
@@ -103,20 +104,21 @@ export function SocialLinks() {
               value="samuel.matlock1@gmail.com"
               isReadOnly
               size="sm"
-              fontSize="xs"
+              fontSize={{ base: "2xs", md: "xs" }}
               borderColor="gray.200"
               bg="gray.50"
-              w="200px"
+              w={{ base: "auto", md: "200px" }}
+              flex={{ base: 1, md: "none" }}
               onFocus={(e) => e.target.select()}
             />
             <Box
               as="button"
               onClick={handleCopy}
-              fontSize="xs"
+              fontSize={{ base: "2xs", md: "xs" }}
               fontWeight="semibold"
-              px={3}
+              px={2}
               py={1}
-              w="80px"
+              w={{ base: "60px", md: "80px" }}
               borderRadius="md"
               border="1px solid"
               borderColor={copied ? "green.400" : "gray.300"}
@@ -126,6 +128,7 @@ export function SocialLinks() {
               transition="all 0.15s"
               whiteSpace="nowrap"
               textAlign="center"
+              flexShrink={0}
             >
               {copied ? "Copied!" : "Copy"}
             </Box>

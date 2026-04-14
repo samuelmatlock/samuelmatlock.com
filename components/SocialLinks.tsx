@@ -67,6 +67,7 @@ export function SocialLinks() {
             opacity: open ? 1 : 0,
             overflow: "hidden",
             transition: "max-height 0.3s ease, opacity 0.25s ease, margin-top 0.3s ease",
+            width: "100%",
           }}
         >
         <Box
@@ -107,8 +108,9 @@ export function SocialLinks() {
               fontSize={{ base: "2xs", md: "xs" }}
               borderColor="gray.200"
               bg="gray.50"
-              w="auto"
+              w="0"
               flex={1}
+              minW={0}
               onFocus={(e) => e.target.select()}
             />
             <Box

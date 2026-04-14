@@ -140,7 +140,7 @@ export function HireMeBlock() {
     <Box
       position="relative"
       bg="gray.900"
-      borderRadius="md"
+      borderRadius="xl"
       px={5}
       py={4}
       mt={1}

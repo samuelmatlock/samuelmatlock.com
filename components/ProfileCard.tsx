@@ -12,7 +12,7 @@ export function ProfileCard() {
       py={5}
       width="100%"
       overflow="visible"
-      mb={4}
+      mb={2}
     >
       <Heading
         as="h1"

@@ -80,8 +80,8 @@ export function SocialLinks() {
           pr={7}
           py={3}
           position="relative"
-          width="100%"
-          display="block"
+          width={{ base: "100%", md: "auto" }}
+          display={{ base: "block", md: "inline-block" }}
         >
           {/* X close in top right */}
           <Box
@@ -108,8 +108,8 @@ export function SocialLinks() {
               fontSize={{ base: "2xs", md: "xs" }}
               borderColor="gray.200"
               bg="gray.50"
-              w="0"
-              flex={1}
+              w={{ base: "0", md: "200px" }}
+              flex={{ base: 1, md: "none" }}
               minW={0}
               onFocus={(e) => e.target.select()}
             />

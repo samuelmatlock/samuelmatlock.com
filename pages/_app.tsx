@@ -50,8 +50,11 @@ const theme = extendTheme(
         },
       },
       li: {
-        lineHeight: 1.75,
+        lineHeight: 1.5,
         my: 0,
+      },
+      "ul, ol": {
+        my: 1,
       },
     },
   })

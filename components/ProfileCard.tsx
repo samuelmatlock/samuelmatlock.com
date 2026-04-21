@@ -15,7 +15,8 @@ export function ProfileCard() {
       mb={2}
     >
       <Flex justify="space-between" align="center">
-        <Box>
+        {/* Left: all text content */}
+        <Box flex={1}>
           <Heading
             as="h1"
             size="lg"
@@ -28,38 +29,39 @@ export function ProfileCard() {
           </Heading>
 
           <SocialLinks />
+
+          <Box mt={4}>
+            <h3 style={{ fontSize: "1.2rem", marginBottom: "0.25rem", marginTop: 0, color: "#1A202C", fontFamily: "inherit" }}>
+              Implementation{" "}
+              <a
+                href="https://hazeltree.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none", color: "#3182CE" }}
+              >
+                @ Hazeltree
+              </a>
+            </h3>
+            <p style={{ margin: 0, color: "#1A202C", fontSize: "0.95rem" }}>Senior Associate</p>
+          </Box>
+
+          <p style={{ fontSize: "0.85rem", marginTop: "0.5rem", marginBottom: 0, color: "#4A5568" }}>
+            Implementation, Solution Engineering, and Pre-Sales Consulting.
+          </p>
         </Box>
 
+        {/* Right: headshot centered in the full card height */}
         <Image
           src="/siteHeadshot.png"
-          boxSize={{ base: "72px", md: "88px" }}
+          boxSize={{ base: "140px", md: "170px" }}
           borderRadius="full"
           border="2px solid white"
           boxShadow="0 0 0 1px rgba(0,0,0,0.08)"
           objectFit="cover"
           flexShrink={0}
-          ml={{ base: 3, md: 6 }}
+          ml={{ base: 4, md: 8 }}
         />
       </Flex>
-
-      <Box mt={4}>
-        <h3 style={{ fontSize: "1.2rem", marginBottom: "0.25rem", marginTop: 0, color: "#1A202C", fontFamily: "inherit" }}>
-          Implementation{" "}
-          <a
-            href="https://hazeltree.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none", color: "#3182CE" }}
-          >
-            @ Hazeltree
-          </a>
-        </h3>
-        <p style={{ margin: 0, color: "#1A202C", fontSize: "0.95rem" }}>Senior Associate</p>
-      </Box>
-
-      <p style={{ fontSize: "0.85rem", marginTop: "0.5rem", marginBottom: 0, color: "#4A5568" }}>
-        Implementation, Solution Engineering, and Pre-Sales Consulting.
-      </p>
     </Box>
   );
 }

@@ -53,7 +53,7 @@ export function ProfileCard() {
         {/* Right: headshot centered in the full card height */}
         <Image
           src="/siteHeadshot.png"
-          boxSize={{ base: "140px", md: "170px" }}
+          boxSize={{ base: "105px", md: "128px" }}
           borderRadius="full"
           border="2px solid white"
           boxShadow="0 0 0 1px rgba(0,0,0,0.08)"

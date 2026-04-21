@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image } from "@chakra-ui/react";
 import { SocialLinks } from "./SocialLinks";
 
 export function ProfileCard() {
@@ -14,18 +14,32 @@ export function ProfileCard() {
       overflow="visible"
       mb={2}
     >
-      <Heading
-        as="h1"
-        size="lg"
-        fontFamily="inherit"
-        color="gray.900"
-        mb={2}
-        mt={0}
-      >
-        Samuel Matlock
-      </Heading>
+      <Flex justify="space-between" align="flex-start">
+        <Box>
+          <Heading
+            as="h1"
+            size="lg"
+            fontFamily="inherit"
+            color="gray.900"
+            mb={2}
+            mt={0}
+          >
+            Samuel Matlock
+          </Heading>
 
-      <SocialLinks />
+          <SocialLinks />
+        </Box>
+
+        <Image
+          src="/siteHeadshot.png"
+          boxSize="64px"
+          borderRadius="full"
+          border="2px solid white"
+          boxShadow="0 0 0 1px rgba(0,0,0,0.08)"
+          objectFit="cover"
+          flexShrink={0}
+        />
+      </Flex>
 
       <Box mt={4}>
         <h3 style={{ fontSize: "1.2rem", marginBottom: "0.25rem", marginTop: 0, color: "#1A202C", fontFamily: "inherit" }}>

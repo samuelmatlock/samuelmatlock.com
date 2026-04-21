@@ -14,7 +14,7 @@ export function ProfileCard() {
       overflow="visible"
       mb={2}
     >
-      <Flex justify="space-between" align="flex-start">
+      <Flex justify="space-between" align="center">
         <Box>
           <Heading
             as="h1"
@@ -32,12 +32,13 @@ export function ProfileCard() {
 
         <Image
           src="/siteHeadshot.png"
-          boxSize="64px"
+          boxSize={{ base: "72px", md: "88px" }}
           borderRadius="full"
           border="2px solid white"
           boxShadow="0 0 0 1px rgba(0,0,0,0.08)"
           objectFit="cover"
           flexShrink={0}
+          ml={{ base: 3, md: 6 }}
         />
       </Flex>
 

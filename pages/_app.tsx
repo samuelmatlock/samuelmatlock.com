@@ -94,8 +94,8 @@ export default function App({ Component, pageProps }: AppProps) {
             "I'm a constant learner and aspiring technical generalist.",
           images: [
             {
-              url: "https://adammaj.com/og-image-dark.jpg",
-              type: "image/jpeg",
+              url: "https://samuelmatlock.com/siteHeadshot.png",
+              type: "image/png",
             },
           ],
           siteName: "Samuel Matlock",
